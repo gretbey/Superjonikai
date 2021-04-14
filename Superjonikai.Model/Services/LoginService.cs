@@ -12,15 +12,16 @@ namespace Superjonikai.Model.Services
                 if (args == null)
                     throw new Exception("Arguments are empty");
 
-                if (args.Email == "admin" && args.Password == "admin")
+                if (args.Email == "user" && args.Password == "user")
                     return new ServerResult<User>
                     {
+                        // Later it will change
                         Success = true,
                         Data = new User
                         {
-                            Email = "admin",
-                            FirstName = "admin",
-                            LastName = "admin"
+                            Email = "user",
+                            FirstName = "user",
+                            LastName = "user"
                         },
                     };
 

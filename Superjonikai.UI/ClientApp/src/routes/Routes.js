@@ -6,11 +6,11 @@ import * as currentUserActions from '../redux/actions/currentUserActions';
 import Layout from '../components/Layout/Layout';
 import LoginPage from '../components/Login/LoginPage';
 import HomePage from '../components/Home/HomePage';
-import NotFoundPage from '../components/NotFound/NotFoundPage';
+import FlowersCatalogPage from '../components/FlowersCatalog/FlowersCatalogPage'
 
-const NotFoundPageWraped = () =>
+const FlowersPageWraped = () =>
     <Layout>
-        <NotFoundPage/>
+        <FlowersCatalogPage />
     </Layout>;
 
 class Routes extends React.Component{
@@ -19,23 +19,15 @@ class Routes extends React.Component{
         this.state = {
             components: [
                 { component: HomePage, path: "/home" },
+                { component: LoginPage, path: "/login" },
+                { component: FlowersCatalogPage, path: "/catalog" },
             ]
         }
     }
 
+   
+
     render(){
-        const { currentUser } = this.props;
-
-        if ((currentUser != null) && (currentUser.firstName == null))
-            return (
-                <BrowserRouter basename={ 'tmp' }>
-                    <Switch>
-                        <Route path='/' exact component={LoginPage}/>
-                        <Route component={NotFoundPage}/>
-                    </Switch>
-                </BrowserRouter>
-            )
-
         return (
             <BrowserRouter basename={ 'tmp' }>
                 <Switch>
@@ -51,7 +43,7 @@ class Routes extends React.Component{
                             )
                         })
                     }
-                    <Route component={NotFoundPageWraped}/>
+                    <Route component={FlowersPageWraped} />    
                 </Switch>
             </BrowserRouter>
         )

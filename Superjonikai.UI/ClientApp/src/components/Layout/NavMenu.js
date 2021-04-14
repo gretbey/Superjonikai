@@ -26,15 +26,11 @@ export class NavMenu extends Component {
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
-            <NavbarBrand tag={Link} to="/">Superjonikai.UI</NavbarBrand>
+                    <NavbarBrand>Flowers ehop</NavbarBrand>
+                    <NavLink tag={Link} className="text-dark" to="/catalog">FLOWERS</NavLink>
+                    <NavLink tag={Link} className="text-grey" to="/login">MY ACCOUNT</NavLink>
+                    <NavLink tag={Link} className="text-grey">CART</NavLink>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/home">Home</NavLink>
-                </NavItem>
-              </ul>
-            </Collapse>
           </Container>
         </Navbar>
       </header>

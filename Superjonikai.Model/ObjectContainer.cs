@@ -8,6 +8,7 @@ namespace Superjonikai.Model
         public static void InitializeContainer(Container container)
         {
             container.Register<ILoginService, LoginService>(Lifestyle.Scoped);
+            container.Register<IFlowersCatalogService, FlowersCatalogService>(Lifestyle.Scoped);
         }
     }
 }

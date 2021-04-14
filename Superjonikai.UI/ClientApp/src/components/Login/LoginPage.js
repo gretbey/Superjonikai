@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './LoginPage.css';
+import { Link } from 'react-router-dom';
 
 class LoginPage extends React.Component{
     constructor(props){
@@ -46,8 +47,9 @@ class LoginPage extends React.Component{
             .then(res => res.json())
             .then(res => {
                 if (res.success) {
-                    this.props.history.push('/home');
-                    this.props.login(res.data);
+                    alert("Successfully connected");
+                    this.props.history.push('/catalog');
+                    this.props.login(res.data);                    
                 }
                 else
                 {
@@ -63,28 +65,22 @@ class LoginPage extends React.Component{
         return(
             <div className='login-wrapper'>
                 <div className='login-holder'>
+                    <div>
+                        <label className="login-label">LOGIN</label>
+                    </div>
                     <div className='row'>
                         <label>Email:</label>
-                        <input 
-                            type='text'
-                            onChange={e => this.setState({ email: e.target.value })}
-                            onKeyPress={e => this.handleKeyPress(e)}
-                        />
+                        <input type='text' onChange={e => this.setState({ email: e.target.value })} onKeyPress={e => this.handleKeyPress(e)}/>
                     </div>
                     <div className='row'>
                         <label>Password:</label>
-                        <input 
-                            type='password'
-                            onChange={e => this.setState({ password: e.target.value })}
-                            onKeyPress={e => this.handleKeyPress(e)}
-                        />
+                        <input type='password' onChange={e => this.setState({ password: e.target.value })} onKeyPress={e => this.handleKeyPress(e)}/>
                     </div>
                     <div className='row'>
-                        <button
-                            type="button" 
-                            className="btn btn-dark"
-                            onClick={() => this.login()}
-                        >Login</button>
+                        <button type="button" className="btnLogin" onClick={() => this.login()}>Login</button>
+                    </div>
+                    <div>
+                        <label>Need an account?</label><Link className="sign-up">  Sign up</Link>
                     </div>
                 </div>
             </div>
