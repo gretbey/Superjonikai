@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Container, Navbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 
@@ -9,31 +9,39 @@ export class NavMenu extends Component {
   constructor (props) {
     super(props);
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
       collapsed: true
     };
   }
 
-  toggleNavbar () {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
-
-  render () {
-    return (
-      <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-          <Container>
-                    <NavbarBrand>Flowers ehop</NavbarBrand>
-                    <NavLink tag={Link} className="text-dark" to="/catalog">FLOWERS</NavLink>
-                    <NavLink tag={Link} className="text-grey" to="/login">MY ACCOUNT</NavLink>
-                    <NavLink tag={Link} className="text-grey">CART</NavLink>
-            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          </Container>
-        </Navbar>
-      </header>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <header>
+                    <Navbar>
+                        <Container>
+                            <div>
+                                <NavLink tag={Link} className="text-dark"></NavLink>
+                            </div>
+                            <div className="topnav">
+                                <NavLink tag={Link} className="text-dark">SHOPPING CART</NavLink>
+                                <NavLink tag={Link} className="text-dark">SIGN OUT</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/login">ACCOUNT</NavLink> 
+                            </div>
+                        </Container>
+                    </Navbar>
+                </header>
+                <Navbar>
+                    <Container>
+                        <div id="mySidenav" class="sidenav">
+                            <NavLink tag={Link} className="text-dark" to="/catalog">Flowers</NavLink>
+                            <NavLink tag={Link} className="text-dark" to="/bouquetsCatalog">Bouquets</NavLink>
+                            <NavLink tag={Link} className="text-dark">About</NavLink>
+                            <NavLink tag={Link} className="text-dark">Contacts</NavLink>
+                        </div>
+                    </Container>
+                </Navbar>
+            </div>
+        );
+    }
 }

@@ -7,6 +7,7 @@ import Layout from '../components/Layout/Layout';
 import LoginPage from '../components/Login/LoginPage';
 import HomePage from '../components/Home/HomePage';
 import FlowersCatalogPage from '../components/FlowersCatalog/FlowersCatalogPage'
+import BouquetsCatalogPage from '../components/BouquetsCatalog/BouquetsCatalogPage';
 
 const FlowersPageWraped = () =>
     <Layout>
@@ -21,6 +22,7 @@ class Routes extends React.Component{
                 { component: HomePage, path: "/home" },
                 { component: LoginPage, path: "/login" },
                 { component: FlowersCatalogPage, path: "/catalog" },
+                { component: BouquetsCatalogPage, path: "/bouquetsCatalog" },
             ]
         }
     }
