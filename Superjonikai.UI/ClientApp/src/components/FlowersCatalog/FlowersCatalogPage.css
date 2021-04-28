@@ -21,7 +21,7 @@
 label {
     margin: 5px 5px 0px 5px;
     font-size: 18px;
-    font-style: normal;
+    font-style: normal;;
 }
 
 .catalog-wrapper {
@@ -35,3 +35,15 @@ label {
     margin: 55px 0px 0px 0px;
 }
 
+#PriceRange {
+    font-size: 10px;
+}
+
+.inline {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#InputText {
+    width: 30px;
+}

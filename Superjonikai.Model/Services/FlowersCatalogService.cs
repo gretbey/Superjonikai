@@ -5,7 +5,7 @@ using Superjonikai.Model.Entities;
 
 namespace Superjonikai.Model.Services
 {
-    class FlowersCatalogService: IFlowersCatalogService
+    public class FlowersCatalogService: IFlowersCatalogService
     {
         public List<Flower> Get()
         {
