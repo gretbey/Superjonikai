@@ -29,7 +29,7 @@ export class NavMenu extends Component {
                     <NavbarBrand>Flowers ehop</NavbarBrand>
                     <NavLink tag={Link} className="text-dark" to="/catalog">FLOWERS</NavLink>
                     <NavLink tag={Link} className="text-grey" to="/login">MY ACCOUNT</NavLink>
-                    <NavLink tag={Link} className="text-grey">CART</NavLink>
+                    <NavLink tag={Link} className="text-grey" to="/cart">CART</NavLink>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           </Container>
         </Navbar>
