@@ -25,7 +25,7 @@ export class NavMenu extends Component {
                             </div>
                             <div className="topnav">
                                 <NavLink tag={Link} className="text-dark">SHOPPING CART</NavLink>
-                                <NavLink tag={Link} className="text-dark">SIGN UP</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/registration">SIGN UP</NavLink>
                                 <NavLink tag={Link} className="text-dark" to="/login">SIGN IN</NavLink> 
                             </div>
                         </Container>
