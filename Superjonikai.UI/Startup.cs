@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleInjector;
+using Superjonikai.DB;
+using Superjonikai.DB.SqlRepository;
+using Superjonikai.Model.Repository;
 
 namespace Superjonikai.UI
 {
@@ -89,6 +92,12 @@ namespace Superjonikai.UI
         private void InitializeContainer()
         {
             Model.ObjectContainer.InitializeContainer(container);
+            string repositoryPluginDllName = Configuration.GetSection("Plugins")
+                .GetValue<string>("RepositoriesDllPath");
+            if (repositoryPluginDllName == "")
+            {
+                container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
+            }
         }
     }
 }
