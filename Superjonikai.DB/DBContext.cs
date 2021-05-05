@@ -18,6 +18,7 @@ namespace Superjonikai.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Seed();
         }
     }
 }

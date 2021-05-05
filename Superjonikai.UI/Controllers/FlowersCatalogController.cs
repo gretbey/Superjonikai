@@ -1,24 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Superjonikai.Model.Entities;
+using Superjonikai.Model.DTO;
 using Superjonikai.Model.Services;
+using System.Collections.Generic;
 
 namespace Superjonikai.UI.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class FlowersCatalogController : Controller
+    public class FlowersCatalogController : ControllerBase
     {
-        private readonly IFlowersCatalogService _flowersCatalogService;
+        private readonly IFlowersCatalogService _flowersService;
 
-        public FlowersCatalogController(IFlowersCatalogService flowersCatalogService)
+        public FlowersCatalogController(IFlowersCatalogService flowersService)
         {
-            _flowersCatalogService = flowersCatalogService;
+            _flowersService = flowersService;
         }
 
-        //[HttpPost]
-        //[Route("catalog")]
-        //public ServerResult<User> Login([FromBody] Login args)
-        //{
-        //    return _loginService.Login(args);
-        //}
+        [HttpGet]
+        public ServerResult<List<Flower>> Flowers()
+        {
+            return new ServerResult<List<Flower>>()
+            {
+                Success = true,
+                Data = _flowersService.GetAll()
+            };
+        }
+
+        [HttpGet("{id}")]
+        public ServerResult<Bouquet> GetFlower([FromRoute] int id)
+        {
+            return new ServerResult<Bouquet>()
+            {
+                Success = true,
+                Data = _flowersService.Get(id)
+            };
+        }
     }
 }

@@ -1,21 +1,29 @@
-﻿using System;
+﻿using Superjonikai.Model.DTO;
+using Superjonikai.Model.IServices;
+using Superjonikai.Model.Repository;
 using System.Collections.Generic;
-using System.Text;
-using Superjonikai.Model.Entities;
+using System.Linq;
 
 namespace Superjonikai.Model.Services
 {
     public class FlowersCatalogService: IFlowersCatalogService
     {
-        public List<Flower> Get()
+        private readonly IFlowerRepository _flowersRepo;
+
+        public FlowersCatalogService(IFlowerRepository flowersRepo)
         {
-            var tmpList = new List<Flower>
-            {
-                new Flower("lelija", 2.35, "geltona"),
-                new Flower("tulpe", 1.55, "raudona"),
-                new Flower("tulpe", 1.55, "geltona")
-            };
-            return tmpList;
+            _flowersRepo = flowersRepo;
+        }
+
+        public Flower Get(int id)
+        {
+            Entities.Flower flower = _flowersRepo.Get(id);
+            return flower?.ToDTO();
+        }
+
+        public List<Flower> GetAll()
+        {
+            return _flowersRepo.GetAll().Select(e => e.ToDTO()).ToList();
         }
     }
 }

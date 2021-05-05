@@ -11,6 +11,10 @@ namespace Superjonikai.Model.Entities
         public double Price { get; set; }
         public string Color { get; set; }
         //photo
+        public Bouquet()
+        {
+
+        }
         public Bouquet(string name, double price)
         {
             Name = name;
