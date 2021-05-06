@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Superjonikai.Model.Repository;
 
-namespace Superjonikai.DB.SqlRepository
+namespace Superjonikai.DB.SQLRepository
 {
     public class FlowerSqlRepository : IFlowerRepository
     {

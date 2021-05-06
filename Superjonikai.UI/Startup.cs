@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Protocols;
 using SimpleInjector;
-using Superjonikai.DB;
-using Superjonikai.DB.SqlRepository;
+using Superjonikai.DB.SQLRepository;
 using Superjonikai.Model.Repository;
+using System;
+using System.Configuration;
 
 namespace Superjonikai.UI
 {
@@ -27,6 +30,8 @@ namespace Superjonikai.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = "server=localhost;user=root;password=root;database=flowersDB.mdf";//TODO: move too appsettings.json
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
             services.AddMvc();
 
             // In production, the React files will be served from this directory
@@ -47,6 +52,9 @@ namespace Superjonikai.UI
                 options.AddLogging();
                 options.AddLocalization();
             });
+            services.AddDbContext<Superjonikai.DB.DBContext>(options => options
+                .UseLazyLoadingProxies()
+                .UseMySql(connectionString, serverVersion));
 
             InitializeContainer();
         }
@@ -94,9 +102,12 @@ namespace Superjonikai.UI
             Model.ObjectContainer.InitializeContainer(container);
             string repositoryPluginDllName = Configuration.GetSection("Plugins")
                 .GetValue<string>("RepositoriesDllPath");
+            string servicePluginDllName = Configuration.GetSection("Plugins")
+                .GetValue<string>("ServicesDllPath");
             if (repositoryPluginDllName == "")
             {
                 container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
+                container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
             }
         }
     }

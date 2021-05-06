@@ -7,7 +7,7 @@ using Superjonikai.Model.Repository;
 
 namespace Superjonikai.DB.SQLRepository
 {
-    class BouquetSqlRepository : IBouquetRepository
+    public class BouquetSqlRepository : IBouquetRepository
     {
         private readonly DBContext context;
 

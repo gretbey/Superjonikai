@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Superjonikai.Model.Entities;
+using Superjonikai.Model.IServices;
 using Superjonikai.Model.Services;
 
 namespace Superjonikai.UI.Controllers

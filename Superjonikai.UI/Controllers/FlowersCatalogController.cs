@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Superjonikai.Model.DTO;
-using Superjonikai.Model.Services;
+using Superjonikai.Model.IServices;
 using System.Collections.Generic;
 
 namespace Superjonikai.UI.Controllers
