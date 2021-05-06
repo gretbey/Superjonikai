@@ -1,0 +1,38 @@
+﻿.banks {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3% 8% 8% 12%;
+    margin-right: 35px;
+}
+
+.bank_card {
+    margin: 5px 10px 0px 5px;
+    width: 180px;
+    height: 240px;
+    border: 2px solid;
+    border-color: gainsboro;
+}
+
+.img {
+    width: 170px;
+    height: 160px;
+}
+
+label {
+    margin: 5px 5px 0px 5px;
+    font-size: 18px;
+    font-style: normal;
+    ;
+}
+
+.banking_wrapper {
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.title {
+    margin: 55px 0px 0px 0px;
+}
+

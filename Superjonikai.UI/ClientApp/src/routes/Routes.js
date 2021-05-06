@@ -8,7 +8,7 @@ import LoginPage from '../components/Login/LoginPage';
 import HomePage from '../components/Home/HomePage';
 import FlowersCatalogPage from '../components/FlowersCatalog/FlowersCatalogPage'
 import BouquetsCatalogPage from '../components/BouquetsCatalog/BouquetsCatalogPage';
-import ShoppingCartPage from '../components/ShoppingCart/ShoppingCartPage';
+import ShoppingCartPageRoutes from '../routes/ShoppingCartPageRoutes';
 import OrdersManagementPage from '../components/OrdersManagement/OrdersManagementPage';
 
 const FlowersPageWraped = () =>
@@ -25,7 +25,7 @@ class Routes extends React.Component{
                 { component: LoginPage, path: "/login" },
                 { component: FlowersCatalogPage, path: "/catalog" },
                 { component: BouquetsCatalogPage, path: "/bouquetsCatalog" },
-                { component: ShoppingCartPage, path: "/cart" },
+                { component: ShoppingCartPageRoutes, path: "/cart" },
                 { component: OrdersManagementPage, path: "/ordersManagement" },
             ]
         }
