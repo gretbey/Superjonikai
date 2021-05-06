@@ -27,9 +27,9 @@ namespace Superjonikai.UI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ServerResult<Bouquet> GetFlower([FromRoute] int id)
+        public ServerResult<Flower> GetFlower([FromRoute] int id)
         {
-            return new ServerResult<Bouquet>()
+            return new ServerResult<Flower>()
             {
                 Success = true,
                 Data = _flowersService.Get(id)
