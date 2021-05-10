@@ -5,7 +5,7 @@ namespace Superjonikai.Model.IServices
 {
     public interface IFlowersCatalogService
     {
-        List<Flower> GetAll();
-        Flower Get(int id);
+        ServerResult<List<Flower>> GetAll();
+        ServerResult<Flower> Get(int id);
     }
 }

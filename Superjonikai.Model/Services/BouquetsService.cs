@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Superjonikai.Model.Services
 {
-    class BouquetsService : IBouquetsService
+    public class BouquetsService : IBouquetsService
     {
         private readonly IBouquetRepository _bouqRepo;
 
@@ -15,15 +15,24 @@ namespace Superjonikai.Model.Services
             _bouqRepo = bouqRepo;
         }
 
-        public List<Bouquet> GetAll()
+        public ServerResult<List<Bouquet>> GetAll()
         {
-            return _bouqRepo.GetAll().Select(e => e.ToDTO()).ToList();
+            var bouquets = _bouqRepo.GetAll();
+            return new ServerResult<List<Bouquet>> 
+            { 
+                Data = bouquets.Select(t => t.ToDTO()).ToList(), 
+                Success = true 
+            };
         }
 
-        Bouquet IBouquetsService.Get(int id)
+        ServerResult<Bouquet> IBouquetsService.Get(int id)
         {
             Entities.Bouquet bouquet = _bouqRepo.Get(id);
-            return bouquet?.ToDTO();
+            return new ServerResult<Bouquet>
+            {
+                Data = bouquet.ToDTO(),
+                Success = true
+            };
         }
     }
 }

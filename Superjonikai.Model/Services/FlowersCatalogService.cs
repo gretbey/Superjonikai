@@ -15,15 +15,24 @@ namespace Superjonikai.Model.Services
             _flowersRepo = flowersRepo;
         }
 
-        public Flower Get(int id)
+        public ServerResult<Flower> Get(int id)
         {
             Entities.Flower flower = _flowersRepo.Get(id);
-            return flower?.ToDTO();
+            return new ServerResult<Flower>
+            {
+                Data = flower.ToDTO(),
+                Success = true
+            };
         }
 
-        public List<Flower> GetAll()
+        public ServerResult<List<Flower>> GetAll()
         {
-            return _flowersRepo.GetAll().Select(e => e.ToDTO()).ToList();
+            var flowers = _flowersRepo.GetAll();
+            return new ServerResult<List<Flower>> 
+            { 
+                Data = flowers.Select(t => t.ToDTO()).ToList(),
+                Success = true
+            };
         }
     }
 }

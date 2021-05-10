@@ -16,24 +16,16 @@ namespace Superjonikai.UI.Controllers
             _flowersService = flowersService;
         }
 
-        [HttpGet]
+        [HttpGet("/allFlowers")]
         public ServerResult<List<Flower>> Flowers()
         {
-            return new ServerResult<List<Flower>>()
-            {
-                Success = true,
-                Data = _flowersService.GetAll()
-            };
+            return _flowersService.GetAll();
         }
 
         [HttpGet("{id}")]
         public ServerResult<Flower> GetFlower([FromRoute] int id)
         {
-            return new ServerResult<Flower>()
-            {
-                Success = true,
-                Data = _flowersService.Get(id)
-            };
+            return _flowersService.Get(id);
         }
     }
 }

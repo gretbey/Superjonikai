@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Superjonikai.Model.Entities;
 using Superjonikai.Model.IServices;
 using Superjonikai.Model.Services;
+using Superjonikai.Model.DTO;
 
 namespace Superjonikai.UI.Controllers
 {
@@ -17,7 +17,7 @@ namespace Superjonikai.UI.Controllers
 
         [HttpPost]
         [Route("login")]
-        public ServerResult<User> Login([FromBody]Login args)
+        public ServerResult<User> Login([FromBody] Login args)
         {
             return _loginService.Login(args);
         }

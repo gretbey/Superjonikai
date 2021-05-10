@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { get } from '../../helpers/request'
 import { connect } from 'react-redux';
 import { post } from '../../helpers/request'
 import * as currentUserActions from '../../redux/actions/currentUserActions';
@@ -10,17 +11,28 @@ class BouquetsCatalogPage extends React.Component {
         super(props);
         this.state = {
             bouquets: [
-                { id: 0, name: 'Simply gorgeous bouquet', price: 60.30},
-                { id: 1, name: 'Summer flowers bouquet', price: 40.3},
-                { id: 2, name: 'Mixed flowers', price: 16.4},
-                { id: 0, name: 'Bright flower bouquet', price: 10 },
-                { id: 1, name: 'Roses box', price: 12 }
-            ],
+                { id: 0, name: 'Simply gorgeous bouquet', price: 60.30 }],
             value: 'sort',
             sortedBouquets: this.bouquets,
             priceLowRange: 0,
             priceHighRange: 200
         };
+    }
+
+    componentDidMount() {
+
+        get('/allBouquets')
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    this.setState({ bouquets: res.data, loading: false });
+                }
+            })
+            .catch(error => {
+                alert(error);
+                console.error('GET bouquets failed:')
+                console.error(error);
+            })
     }
 
     renderTableData() {

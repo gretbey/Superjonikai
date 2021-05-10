@@ -9,6 +9,8 @@ using Microsoft.IdentityModel.Protocols;
 using SimpleInjector;
 using Superjonikai.DB.SQLRepository;
 using Superjonikai.Model.Repository;
+using Superjonikai.Model.IServices;
+using Superjonikai.Model.Services;
 using System;
 using System.Configuration;
 
@@ -30,7 +32,7 @@ namespace Superjonikai.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = "server=localhost;user=root;password=root;database=flowersDB.mdf";//TODO: move too appsettings.json
+            var connectionString = "Server=localhost;Database=FlowersDB;Password=root;User=root";
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
             services.AddMvc();
 
@@ -52,9 +54,11 @@ namespace Superjonikai.UI
                 options.AddLogging();
                 options.AddLocalization();
             });
+
+
             services.AddDbContext<Superjonikai.DB.DBContext>(options => options
                 .UseLazyLoadingProxies()
-                .UseMySql(connectionString, serverVersion));
+                .UseMySql(Configuration.GetConnectionString("DefaultConnection"), serverVersion));
 
             InitializeContainer();
         }
@@ -100,15 +104,15 @@ namespace Superjonikai.UI
         private void InitializeContainer()
         {
             Model.ObjectContainer.InitializeContainer(container);
-            string repositoryPluginDllName = Configuration.GetSection("Plugins")
-                .GetValue<string>("RepositoriesDllPath");
-            string servicePluginDllName = Configuration.GetSection("Plugins")
-                .GetValue<string>("ServicesDllPath");
-            if (repositoryPluginDllName == "")
-            {
+            //string repositoryPluginDllName = Configuration.GetSection("Plugins")
+            //    .GetValue<string>("RepositoriesDllPath");
+            //string servicePluginDllName = Configuration.GetSection("Plugins")
+            //    .GetValue<string>("ServicesDllPath");
+            //if (repositoryPluginDllName == "")
+            //{
                 container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
                 container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
-            }
+            //}
         }
     }
 }

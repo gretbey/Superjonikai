@@ -3,7 +3,7 @@ using Superjonikai.Model.DTO;
 using Superjonikai.Model.IServices;
 using System.Collections.Generic;
 
-namespace PSK.UI.Controllers
+namespace Superjonikai.UI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -16,24 +16,16 @@ namespace PSK.UI.Controllers
             _bouquetsService = bouquetsService;
         }
 
-        [HttpGet]
+        [HttpGet ("/allBouquets")]
         public ServerResult<List<Bouquet>> Bouquets()
         {
-            return new ServerResult<List<Bouquet>>()
-            {
-                Success = true,
-                Data = _bouquetsService.GetAll()
-            };
+            return _bouquetsService.GetAll();
         }
 
         [HttpGet("{id}")]
         public ServerResult<Bouquet> GetBouquet([FromRoute] int id)
         {
-            return new ServerResult<Bouquet>()
-            {
-                Success = true,
-                Data = _bouquetsService.Get(id)
-            };
+            return _bouquetsService.Get(id);
         }
     }
 }

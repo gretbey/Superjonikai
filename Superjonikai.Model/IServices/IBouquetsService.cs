@@ -5,7 +5,7 @@ namespace Superjonikai.Model.IServices
 {
     public interface IBouquetsService
     {
-        List<Bouquet> GetAll();
-        Bouquet Get(int id);
+        ServerResult<List<Bouquet>> GetAll();
+        ServerResult<Bouquet> Get(int id);
     }
 }

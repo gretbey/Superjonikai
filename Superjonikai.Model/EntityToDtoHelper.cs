@@ -13,6 +13,7 @@ namespace Superjonikai.Model
                 Id = bouquet.Id,
                 Name = bouquet.Name,
                 Price = bouquet.Price,
+                Color = bouquet.Color,
             };
         }
 
@@ -23,6 +24,7 @@ namespace Superjonikai.Model
                 Id = flower.Id,
                 Name = flower.Name,
                 Price = flower.Price,
+                Color = flower.Color
             };
         }
     }

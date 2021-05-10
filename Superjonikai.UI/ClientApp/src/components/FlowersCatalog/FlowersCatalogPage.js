@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { get } from '../../helpers/request'
 import { connect } from 'react-redux';
 import { post } from '../../helpers/request'
 import * as currentUserActions from '../../redux/actions/currentUserActions';
@@ -10,37 +11,29 @@ class FlowersCatalogPage extends React.Component {
         super(props);
         this.state = {
             flowers: [
-                { id: 0, name: 'Tulips', price: 0.7, color: 'yellow' },
-                { id: 1, name: 'Tulips', price: 0.4, color: 'red' },
-                { id: 2, name: 'Roses', price: 0.35, color: 'red' },
-                { id: 0, name: 'Tulips', price: 1.3, color: 'yellow' },
-                { id: 1, name: 'Lilies', price: 1.2, color: 'white' },
-                { id: 2, name: 'Roses', price: 0.5, color: 'red' },
-                { id: 0, name: 'Tulips', price: 0.6, color: 'yellow' },
-                { id: 1, name: 'Tulips', price: 0.3, color: 'red' },
-                { id: 2, name: 'Roses', price: 0.5, color: 'red' },
-                { id: 0, name: 'Tulips', price: 0.8, color: 'yellow' },
-                { id: 1, name: 'Lilies', price: 0.6, color: 'white' },
-                { id: 2, name: 'Roses', price: 0.9, color: 'red' },
-                { id: 0, name: 'Tulips', price: 0.3, color: 'yellow' },
-                { id: 1, name: 'Tulips', price: 0.5, color: 'red' },
-                { id: 2, name: 'Roses', price: 0.6, color: 'red' },
-                { id: 0, name: 'Tulips', price: 0.9, color: 'yellow' },
-                { id: 1, name: 'Lilies', price: 0.4, color: 'white' },
-                { id: 2, name: 'Roses', price: 0.3, color: 'red' },
-                { id: 0, name: 'Tulips', price: 1.5, color: 'yellow' },
-                { id: 1, name: 'Tulips', price: 1.3, color: 'red' },
-                { id: 2, name: 'Roses', price: 1.1, color: 'red' },
-                { id: 0, name: 'Tulips', price: 0.7, color: 'yellow' },
-                { id: 1, name: 'Lilies', price: 1.7, color: 'white' },
-                { id: 2, name: 'Roses', price: 0.7, color: 'red' }
-            ],
+                { id: 0, name: 'Tulips', price: 0.7, color: 'yellow' }],
             value: 'sort',
             sortedFlowers: this.flowers,
             priceLowRange: 0,
             priceHighRange: 50
         };  
     };
+
+    componentDidMount() {
+
+        get('/allFlowers')
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        this.setState({ flowers: res.data, loading: false });
+                    }
+                })
+                .catch(error => {
+                    alert(error);
+                    console.error('GET flowers failed:')
+                    console.error(error);
+                })
+    }
 
     renderTableData() {
         return this.state.flowers.filter(item => item.price <= this.state.priceHighRange && item.price >= this.state.priceLowRange).map((flower, index) => {

@@ -40,7 +40,7 @@ namespace Superjonikai.DB.SQLRepository
 
         public List<Flower> GetAll()
         {
-            return context.Flowers.ToList();
+            return context.Flowers.ToList<Flower>();
         }
 
         public Flower Update(Flower updatedFlower)
