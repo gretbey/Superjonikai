@@ -15,6 +15,7 @@ class RegistrationPage extends React.Component{
             email: null,
             password: null,
             confirmPassword: null,
+            token: null
         };
         this.onSubmit = this.registration.bind(this);
     }

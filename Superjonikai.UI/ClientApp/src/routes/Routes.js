@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { post } from '../helpers/request';
+import { post, get, getCookie, removeCookie } from '../helpers/request';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import * as currentUserActions from '../redux/actions/currentUserActions';
 import Layout from '../components/Layout/Layout';
@@ -29,7 +29,27 @@ class Routes extends React.Component{
             ]
         }
     }
-
+    componentDidMount() {
+        const token = getCookie('AuthToken');
+        if (token) {
+            post('login?token=true', { token })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        this.props.login(res.data);
+                        this.setState({ loading: false });
+                    }
+                    else {
+                        removeCookie('AuthToken');
+                        window.location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error('POST login?token=true failed:');
+                    console.error(error);
+                })
+        }
+    }
    
 
     render(){

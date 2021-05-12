@@ -7,6 +7,26 @@ namespace Superjonikai.Model.Services
 {
     class RegistrationService : IRegistrationService
     {
+        private readonly IUserRepository _userRepository;
+        public ServerResult<string> GetEmailFromToken(string token)
+        {
+            User user = _userRepository.FindByToken(token);
+
+            if (user != null)
+                return new ServerResult<string>
+                {
+                    Success = true,
+                    Data = user.Email
+                };
+
+            else
+                return new ServerResult<string>
+                {
+                    Success = false,
+                    Message = "Token doesn't exist in the database"
+                };
+        }
+
         public ServerResult<User> Registration(Registration args)
         {
             try

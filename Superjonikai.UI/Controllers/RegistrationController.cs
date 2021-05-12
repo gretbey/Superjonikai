@@ -25,5 +25,11 @@ namespace Superjonikai.UI.Controllers
             return _registrationService.Registration(args);
         }
 
+        [HttpGet, Route("{token}")]
+        public ServerResult<string> GetEmailFromToken(string token)
+        {
+            return _registrationService.GetEmailFromToken(token);
+        }
+
     }
 }
