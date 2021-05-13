@@ -11,7 +11,7 @@ import PaymentInfoPage from '../components/PaymentInfo/PaymentInfoPage';
 
 const ShoppingCartPageWraped = () =>
     <ShoppingCartPageLayout>
-        <ShoppingCartPage />
+        <CheckoutPage />
     </ShoppingCartPageLayout>;
 
 class ShoppingCartPageRoutes extends React.Component {

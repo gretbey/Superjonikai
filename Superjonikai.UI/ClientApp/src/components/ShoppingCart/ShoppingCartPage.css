@@ -31,3 +31,8 @@ hr {
     display: inline;
     float: right;
 }
+
+.payment_button{
+    float: right;
+    margin: 10px;
+}

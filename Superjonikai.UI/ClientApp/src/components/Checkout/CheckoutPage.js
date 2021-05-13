@@ -28,6 +28,20 @@ class CheckoutPage extends React.Component {
                         {this.renderListData()}
                     </div>
                 </div>
+                <div id="gift_card">
+                    <div class="card">
+                        <div>
+                            <button type="button" className="add_gift_card" >Add Gift Card</button>
+                        </div>
+                        <div id="gift_card_input">
+                            <input type='text' placeholder='Message...' />
+                        </div>
+                        <div id="confirmation_buttons">
+                            <button type="button" id="gift_card_cancel_btn" >Cancel</button>
+                            <button type="button" id="gift_card_add_btn" >Add</button>
+                        </div>
+                    </div>
+                </div>
             </section>
         )
     }

@@ -27,3 +27,19 @@ p.order_detail {
 td {
     width: 180px;
 }
+
+#confirmation_buttons {
+    margin: 12px;
+}
+
+#gift_card_cancel_btn {
+    display: inline;
+    margin: 0px 0px 0px 12px;
+    float: right;
+}
+
+#gift_card_add_btn {
+    display: inline;
+    margin: 0px 0px 0px 12px;
+    float: right;
+}

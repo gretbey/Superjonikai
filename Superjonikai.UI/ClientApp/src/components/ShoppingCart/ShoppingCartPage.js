@@ -61,7 +61,7 @@ export class ShoppingCartPage extends Component {
                     <label className="summary_amount">0.00 €</label>
                 </div>
                 <div className='payment_button'>
-                    <button type="button" className="btnLogin" onClick={() => this.login()}>Pay Now</button>
+                    <button type="button" className="btnLogin" >Continue</button>
                 </div>
             </section>
             )
