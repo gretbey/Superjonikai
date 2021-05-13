@@ -24,7 +24,8 @@ export class NavMenu extends Component {
                                 <NavLink tag={Link} className="text-dark"></NavLink>
                             </div>
                             <div className="topnav">
-                                <NavLink tag={Link} className="text-dark">SHOPPING CART</NavLink>
+
+                                <NavLink tag={Link} className="text-dark" to="/cart">SHOPPING CART</NavLink>
                                 <NavLink tag={Link} className="text-dark" to="/registration">SIGN UP</NavLink>
                                 <NavLink tag={Link} className="text-dark" to="/login">SIGN IN</NavLink> 
                             </div>
@@ -38,6 +39,7 @@ export class NavMenu extends Component {
                             <NavLink tag={Link} className="text-dark" to="/bouquetsCatalog">Bouquets</NavLink>
                             <NavLink tag={Link} className="text-dark">About</NavLink>
                             <NavLink tag={Link} className="text-dark">Contacts</NavLink>
+                            <NavLink tag={Link} className="text-dark" to="/ordersManagement">Orders</NavLink>
                         </div>
                     </Container>
                 </Navbar>

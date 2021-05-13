@@ -1,0 +1,45 @@
+﻿#checkout_section {
+    float: left;
+    width: 60%;
+}
+
+.item_img {
+    width: 32px;
+    height: 32px;
+}
+
+ul li {
+    border: 2px solid gainsboro;
+    border-radius: 5px;
+    margin: 12px 0px;
+    padding: 12px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+p.order_detail {
+    display: inline;
+}
+
+td {
+    width: 180px;
+}
+
+#confirmation_buttons {
+    margin: 12px;
+}
+
+#gift_card_cancel_btn {
+    display: inline;
+    margin: 0px 0px 0px 12px;
+    float: right;
+}
+
+#gift_card_add_btn {
+    display: inline;
+    margin: 0px 0px 0px 12px;
+    float: right;
+}

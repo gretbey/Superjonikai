@@ -10,6 +10,8 @@ import FlowersCatalogPage from '../components/FlowersCatalog/FlowersCatalogPage'
 import BouquetsCatalogPage from '../components/BouquetsCatalog/BouquetsCatalogPage';
 import RegistrationPage from '../components/Registration/RegistrationPage';
 
+import ShoppingCartPageRoutes from '../routes/ShoppingCartPageRoutes';
+import OrdersManagementPage from '../components/OrdersManagement/OrdersManagementPage';
 
 const FlowersPageWraped = () =>
     <Layout>
@@ -26,6 +28,8 @@ class Routes extends React.Component{
                 { component: FlowersCatalogPage, path: "/catalog" },
                 { component: BouquetsCatalogPage, path: "/bouquetsCatalog" },
                 { component: RegistrationPage, path: "/registration" }
+                { component: ShoppingCartPageRoutes, path: "/cart" },
+                { component: OrdersManagementPage, path: "/ordersManagement" },
             ]
         }
     }
