@@ -104,15 +104,8 @@ namespace Superjonikai.UI
         private void InitializeContainer()
         {
             Model.ObjectContainer.InitializeContainer(container);
-            //string repositoryPluginDllName = Configuration.GetSection("Plugins")
-            //    .GetValue<string>("RepositoriesDllPath");
-            //string servicePluginDllName = Configuration.GetSection("Plugins")
-            //    .GetValue<string>("ServicesDllPath");
-            //if (repositoryPluginDllName == "")
-            //{
-                container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
-                container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
-            //}
+            container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
+            container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
         }
     }
 }
