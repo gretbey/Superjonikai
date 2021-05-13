@@ -1,0 +1,20 @@
+﻿@br: 3px;
+.registrationContainer {
+    max-width: 38em;
+    padding: 1em 3em 2em 3em;
+    margin: 0em auto;
+    background-color: #fff;
+    border-radius: @br * 1.4;
+    box-shadow: 0px 3px 10px -2px rgba(0,0,0,0.2);
+}
+.form-holder {
+    margin: 0em auto;
+    text-align: center;
+    align-content: center;
+}
+button {
+    margin: 0em auto;
+    align-content: center;
+    text-align: center;
+}
+

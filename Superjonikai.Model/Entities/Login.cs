@@ -11,10 +11,12 @@ namespace Superjonikai.Model.Entities
         public string Email { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Password { get; set; }
-
         public Login()
         {
 
         }
+
+        public string Token { get; set; }
+
     }
 }

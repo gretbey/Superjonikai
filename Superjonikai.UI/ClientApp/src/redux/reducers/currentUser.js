@@ -1,11 +1,14 @@
 import {
     LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT
 } from '../constants';
 
 const initialState = {
     email: null,
     firstName: null,
     lastName: null,
+    token: null
 }
 
 export default (state = initialState, action) => {
@@ -14,6 +17,18 @@ export default (state = initialState, action) => {
             state.email = action.login;
             state.firstName = action.firstName;
             state.lastName = action.lastName;
+            return { ...state };
+        }
+        case LOGOUT: {
+            state.login = null;
+            state.name = null;
+            state.token = null;
+            return { ...state };
+        }
+        case LOGIN_FAILURE: {
+            state.login = null;
+            state.name = null;
+            state.token = null;
             return { ...state };
         }
         default:

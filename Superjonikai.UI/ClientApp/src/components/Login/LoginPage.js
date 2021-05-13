@@ -80,7 +80,7 @@ class LoginPage extends React.Component{
                         <button type="button" className="btnLogin" onClick={() => this.login()}>Login</button>
                     </div>
                     <div>
-                        <label>Need an account?</label><Link className="sign-up">  Sign up</Link>
+                        <label>Need an account?</label><Link className="sign-up" to="/registration">  Sign up</Link>
                     </div>
                 </div>
             </div>

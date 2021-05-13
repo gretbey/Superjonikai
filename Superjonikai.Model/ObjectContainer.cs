@@ -16,6 +16,8 @@ namespace Superjonikai.Model
             container.Register<ILoginService, LoginService>(Lifestyle.Scoped);
             container.Register<IFlowersCatalogService, FlowersCatalogService>(Lifestyle.Scoped);
             container.Register<IBouquetsService, BouquetsService>(Lifestyle.Scoped);
+            container.Register<IRegistrationService, RegistrationService>(Lifestyle.Scoped);
+
         }
     }
 }
