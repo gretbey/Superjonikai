@@ -37,17 +37,21 @@ class PaymentInfoPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <tbody>
-                    <div className='banking_wrapper'>
-                        <h2 className="title">Electornic banking</h2>
-                        <hr/>
-                        <div class="banks">
-                            {this.renderTableData()}
+            <section id="payment_section">
+                <div>
+                    <tbody>
+                        <div className='banking_wrapper'>
+                            <div>
+                                <h2>Electornic banking</h2>
+                            </div>
+                            <hr/>
+                            <div class="banks">
+                                {this.renderTableData()}
+                            </div>
                         </div>
+                    </tbody>
                     </div>
-                </tbody>
-            </div>
+            </section>
         )
     };
 }

@@ -1,2 +1,33 @@
-﻿body {
+﻿#shopping_cart_nav {
+    margin: 12px 0px 0px 0px;
+    color: aqua !important;
+}
+
+#payment_button {
+    margin: 0px 56px;
+}
+
+#delivery_button {
+    margin: 0px 56px;
+}
+
+#checkout_button {
+    margin: 0px 56px;
+}
+
+#order_summary {
+    float: right;
+    width: 25%;
+}
+
+h2 {
+    margin: 0px;
+}
+
+hr {
+    border-width: 2px;
+}
+.summary_amount{
+    display: inline;
+    float: right;
 }

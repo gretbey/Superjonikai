@@ -24,16 +24,47 @@ export class ShoppingCartPage extends Component {
                 <header>
                     <Navbar>
                         <Container>
-                            <div className="topnav">
-                                <NavLink tag={Link} className="text-dark" to="/payment">Payment</NavLink>
-                                <NavLink tag={Link} className="text-dark" to="/delivery">Delivery</NavLink>
-                                <NavLink tag={Link} className="text-dark" to="/checkout">Shopping Cart</NavLink>
+                            <div className="topnav" id="shopping_cart_nav">
+                                <NavLink tag={Link} className="text-dark" id="payment_button" to="/payment">Payment</NavLink>
+                                <NavLink tag={Link} className="text-dark" id="delivery_button" to="/delivery">Delivery</NavLink>
+                                <NavLink tag={Link} className="text-dark" id="checkout_button" to="/checkout">Shopping Cart</NavLink>
                             </div>
                         </Container>
                     </Navbar>
                 </header>
+                <hr/>
+                <div class="summary">
+                    {this.renderSummaryData()}
+                </div>
             </div>
         );
+    }
+
+    renderSummaryData() {
+        return (
+            <section id="order_summary">
+                <div>
+                    <h2>Summary</h2>
+                </div>
+                <hr/>
+                <div>
+                    <label className="summary_label">SUBTOTAL</label>
+                    <label className="summary_amount">0.00 €</label>
+                </div>
+                <div>
+                    <label className="summary_label">DELIVERY</label>
+                    <label className="summary_amount">0.00 €</label>
+                </div>
+                <hr/>
+                <div>
+                    <label className="summary_label">TOTAL</label>
+                    <label className="summary_amount">0.00 €</label>
+                </div>
+                <div className='payment_button'>
+                    <button type="button" className="btnLogin" onClick={() => this.login()}>Pay Now</button>
+                </div>
+            </section>
+            )
     }
 }
 

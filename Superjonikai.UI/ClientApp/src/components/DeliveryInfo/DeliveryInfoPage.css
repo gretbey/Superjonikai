@@ -1,2 +1,24 @@
-﻿body {
+﻿h2{
+    margin: 24px;
+}
+
+input {
+    margin: 16px 0px 0px 0px;
+    padding: 4px;
+    width: 100%;
+}
+
+#delivery_date_label {
+    font-size: 14px;
+    display: inline;
+}
+
+#delivery_date_input {
+    width: 84%;
+    display: inline !important;
+}
+
+#delivery_section {
+    float: left;
+    width: 60%;
 }

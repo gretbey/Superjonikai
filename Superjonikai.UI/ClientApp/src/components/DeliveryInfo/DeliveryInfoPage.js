@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { post } from '../../helpers/request'
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
+import './DeliveryInfoPage.css';
 
 class DeliveryInfoPage extends React.Component {
     constructor(props) {
@@ -20,58 +21,39 @@ class DeliveryInfoPage extends React.Component {
 
     render() {
         return (
-            <div className='cart-wrapper'>
-                <div className='cart-holder'>
-                    <div>
-                        <label className="delivery_label">Deliver to:</label>
-                    </div>
-                    <hr/>
-                    <div className='first_name'>
-                        <input type='text' placeholder='First Name'/>
-                    </div>
-                    <br />
-                    <div className='last_name'>
-                        <input type='text' placeholder='Last Name'/>
-                    </div>
-                    <div className='address'>
-                        <input type='text' placeholder='Address'/>
-                    </div>
-                    <div className='country'>
-                        <input type='text' placeholder='Country'/>
-                    </div>
-                    <div className='city'>
-                        <input type='text' placeholder='City'/>
-                    </div>
-                    <div className='phone_number'>
-                        <input type='tel' placeholder='Phone Number'/>
-                    </div>
-                    <div className='delivery_date'>
-                        <label>Delivery Date: </label>
-                        <input type='date' />
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div>
-                        <label className="summary_label">Summary</label>
-                    </div>
-                    <hr />
-                    <div>
-                        <label className="subtotal">SUBTOTAL</label>
-                    </div>
-                    <div>
-                        <label className="delivery">DELIVERY</label>
-                    </div>
-                    <div>
-                        <label className="delivery">TOTAL</label>
-                    </div>
-                    <div className='payment_button'>
-                        <button type="button" className="btnLogin" onClick={() => this.login()}>Pay Now</button>
+            <section id="delivery_section">
+                <div className='delivery_wrapper'>
+                    <div className='delivery_holder'>
+                        <div>
+                            <h2>Deliver to:</h2>
+                        </div>
+                        <hr/>
+                        <div class="delivery_info_input" id='first_name'>
+                            <input type='text' placeholder='First Name'/>
+                        </div>
+                        <div class="delivery_info_input" id='last_name'>
+                            <input type='text' placeholder='Last Name'/>
+                        </div>
+                        <div class="delivery_info_input" id='address'>
+                            <input type='text' placeholder='Address'/>
+                        </div>
+                        <div class="delivery_info_input" id='country'>
+                            <input type='text' placeholder='Country'/>
+                        </div>
+                        <div class="delivery_info_input" id='city'>
+                            <input type='text' placeholder='City'/>
+                        </div>
+                        <div class="delivery_info_input" id='phone_number'>
+                            <input type='tel' placeholder='Phone Number'/>
+                        </div>
+                        <div class="delivery_info_input" id='delivery_date'>
+                            <label id="delivery_date_label">Delivery Date: </label>
+                            <input id="delivery_date_input" type='date' />
+                        </div>
                     </div>
 
-                </div>
-            </div>
+                </div >
+            </section>
         )
     }
 
