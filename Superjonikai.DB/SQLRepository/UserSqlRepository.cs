@@ -52,5 +52,12 @@ namespace Superjonikai.DB.SQLRepository
             context.SaveChanges();
             return updatedUser;
         }
+
+        public User FindByToken(string token)
+        {
+            // TODO: uncomment line below when token is added
+            //return context.Users.FirstOrDefault(user => user.Token.Equals(token));
+            return null;
+        }
     }
 }
