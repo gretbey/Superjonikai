@@ -1,4 +1,5 @@
-﻿using Superjonikai.Model.Entities;
+﻿using Superjonikai.Model.DTO;
+using Superjonikai.Model.IServices;
 using System;
 
 namespace Superjonikai.Model.Services

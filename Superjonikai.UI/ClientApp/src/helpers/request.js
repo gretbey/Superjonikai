@@ -27,11 +27,14 @@ export function post(url, params = {}) {
         body: JSON.stringify(params)
     })
 }
+
+
 export function get(url, params = {}) {
-    return fetch('./api/' + url, {
+    return fetch(url, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
             'Authorization': 'Token ' + getCookie('AuthToken'),
         }
     })

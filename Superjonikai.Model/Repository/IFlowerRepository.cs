@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Superjonikai.Model.Services
+namespace Superjonikai.Model.Repository
 {
-    public interface IFlowersCatalogService
+    public interface IFlowerRepository: IRepository<Flower>
     {
-        List<Flower> Get();
     }
 }

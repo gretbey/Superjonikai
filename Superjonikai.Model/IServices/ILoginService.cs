@@ -1,6 +1,6 @@
-﻿using Superjonikai.Model.Entities;
+﻿using Superjonikai.Model.DTO;
 
-namespace Superjonikai.Model.Services
+namespace Superjonikai.Model.IServices
 {
     public interface ILoginService
     {
