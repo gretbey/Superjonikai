@@ -1,0 +1,34 @@
+﻿.banks {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3% 0% 8% 0%;
+    margin-right: 35px;
+}
+
+.bank_card {
+    margin: 5px 10px 0px 5px;
+    width: 180px;
+    height: 240px;
+    border: 2px solid;
+    border-color: gainsboro;
+}
+
+.img {
+    width: 170px;
+    height: 160px;
+}
+
+label {
+    margin: 5px 5px 0px 5px;
+    font-size: 18px;
+    font-style: normal;
+}
+
+h2 {
+    margin: 24px;
+}
+
+#payment_section {
+    float: left;
+    width: 60%;
+}
