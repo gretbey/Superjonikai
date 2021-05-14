@@ -1,4 +1,5 @@
 ﻿using Superjonikai.Model.Entities;
+using Superjonikai.Model.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;

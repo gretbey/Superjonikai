@@ -42,7 +42,7 @@ class PaymentInfoPage extends React.Component {
                     <tbody>
                         <div className='banking_wrapper'>
                             <div>
-                                <h2>Electornic banking</h2>
+                                <h2>Electronic banking</h2>
                             </div>
                             <hr/>
                             <div class="banks">

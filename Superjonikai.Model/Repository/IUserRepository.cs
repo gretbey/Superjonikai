@@ -8,5 +8,7 @@ namespace Superjonikai.Model.Repository
 {
     public interface IUserRepository: IRepository<User>
     {
+        User FindByToken(string token);
+        List<User> GetAllByEmail(string email);
     }
 }
