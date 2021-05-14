@@ -55,9 +55,12 @@ namespace Superjonikai.DB.SQLRepository
 
         public User FindByToken(string token)
         {
-            // TODO: uncomment line below when token is added
-            //return context.Users.FirstOrDefault(user => user.Token.Equals(token));
-            return null;
+            return context.Users.FirstOrDefault(user => user.Token.Equals(token));
+        }
+
+        public List<User> GetAllByEmail(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }

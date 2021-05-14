@@ -27,7 +27,7 @@ class Routes extends React.Component{
                 { component: LoginPage, path: "/login" },
                 { component: FlowersCatalogPage, path: "/catalog" },
                 { component: BouquetsCatalogPage, path: "/bouquetsCatalog" },
-                { component: RegistrationPage, path: "/registration" }
+                { component: RegistrationPage, path: "/registration" },
                 { component: ShoppingCartPageRoutes, path: "/cart" },
                 { component: OrdersManagementPage, path: "/ordersManagement" },
             ]
