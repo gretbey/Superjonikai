@@ -39,3 +39,24 @@ export function get(url, params = {}) {
         }
     })
 }
+
+export function put(url, params = {}) {
+    return fetch(url, {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify(params)
+    })
+    .then(res => handleErrors(res))
+}
+
+
+function handleErrors(response) {
+    if (response.status === 401) {
+        window.location.reload();
+        return Promise.reject()
+    }
+    return response;
+}

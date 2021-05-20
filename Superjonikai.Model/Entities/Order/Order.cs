@@ -1,17 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Superjonikai.Model.Entities.Order
 {
-    class Order
+    public class Order
     {
         public int Id { get; set; }
-        public string ClientName { get; set; }
-        public DateTime DeliveryDate { get; set; }
         public OrderStatus Status { get; set; }
-        public List<Flower> FlowersList { get; set; }
-        public List<Bouquet> BouquetsList { get; set; }
+        [Column(TypeName = "varchar(255)")]
+        public string ClientName { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? DeliveryDate { get; set; }
+       
+        [NotMapped]
+        public virtual  ICollection<FlowerOrder> FlowersList { get; set; }
+        [NotMapped]
+        public virtual ICollection<BouquetOrder> BouquetsList { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
+        public Order()
+        {
+
+        }
 
         public Order(string clientName, DateTime deliveryDate, OrderStatus status)
         {
@@ -27,10 +41,10 @@ namespace Superjonikai.Model.Entities.Order
             if (FlowersList.Count > 0 || BouquetsList.Count > 0)
             {
                 foreach (var flower in FlowersList)
-                    totalSum += flower.Price;
+                    totalSum += flower.Flower.Price;
 
                 foreach (var boquet in BouquetsList)
-                    totalSum += boquet.Price;
+                    totalSum += boquet.Bouquet.Price;
             }
 
             return totalSum;

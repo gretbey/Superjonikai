@@ -27,5 +27,28 @@ namespace Superjonikai.Model
                 Color = flower.Color
             };
         }
+
+        public static DTO.Order ToDTO(this Entities.Order.Order order)
+        {
+            return new DTO.Order()
+            {
+                Id = order.Id,
+                ClientName = order.ClientName,
+                DeliveryDate = order.DeliveryDate.Value.ToString("yyyy-MM-dd"),
+                Status = order.Status.ToString(),
+                RowVersion = order.RowVersion,
+            };
+        }
+
+        public static DTO.GiftCard ToDTO(this Entities.GiftCard.GiftCard giftCard)
+        {
+            return new DTO.GiftCard()
+            {
+                Id = giftCard.Id,
+                Message = giftCard.Message,
+                Price = giftCard.Price,
+                Type = giftCard.Type.ToString(),
+            };
+        }
     }
 }
