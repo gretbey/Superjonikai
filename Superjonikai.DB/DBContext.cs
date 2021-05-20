@@ -23,7 +23,6 @@ namespace Superjonikai.DB
         public DbSet<FlowerOrder> FlowerOrders { set; internal get; }
         public DbSet<BouquetOrder> BouquetOrders { set; internal get; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(u =>
@@ -76,16 +75,6 @@ namespace Superjonikai.DB
                 .HasMaxLength(255).IsUnicode(false);
                 u.Property(e => e.Price);
             });
-            //modelBuilder.Entity<Order>()
-            //    .WithMany(g => g.Students)
-            //    .HasForeignKey<int>(s => s.CurrentGradeId);
-            //modelBuilder.Entity<Order>(u =>
-            //{
-            //    u.HasKey(e => e.Id);
-            //    u.HasMany(g => g.FlowersList);
-            //    u.HasMany(g => g.BouquetsList);
-            //    u.has
-            //});
             modelBuilder.Entity<Order>(u =>
             {
                 u.HasKey(e => e.Id);
@@ -99,11 +88,6 @@ namespace Superjonikai.DB
                 //.HasMaxLength(255).IsUnicode(false);
                 //u.HasMany<Flower>(s => s.FlowersList).WithMany(c => c.Orders);
             });
-
-            //modelBuilder.Entity<Order>()
-            //    .HasMany<Bouquet>(s => s.BouquetsList)
-            //    .WithMany(c => c.Orders);
-
             modelBuilder.Entity<FlowerOrder>()
                .HasKey(t => new { t.OrderId, t.FlowerId });
 
