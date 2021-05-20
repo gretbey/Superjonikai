@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="SimpleInjector" Version="4.9.0" />
+    <PackageReference Include="Wahid-SweetAlert2" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

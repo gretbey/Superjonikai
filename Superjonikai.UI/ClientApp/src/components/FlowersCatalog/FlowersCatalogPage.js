@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { get } from '../../helpers/request'
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import { post } from '../../helpers/request'
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -40,8 +41,10 @@ class FlowersCatalogPage extends React.Component {
             const { id, name, price, color } = flower
             return (
                 <div class="product-card">
+                    <Link to={{ pathname: `itemViewFlowers/${flower.name}`, state: { flower } }}>
                     <img class="img" src="https://www.floristikosnamai.lt/image/cache/catalog/geles/RAUDONOS-TULPES-1000x1000.jpg" />
-                    <br />
+                        <br />
+                    </Link>
                     <div class="product-info">
                         <label>{name}</label>
                         <br />
