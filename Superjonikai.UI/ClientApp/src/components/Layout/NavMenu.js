@@ -28,6 +28,7 @@ export class NavMenu extends Component {
                                 <NavLink tag={Link} className="text-dark" to="/cart">SHOPPING CART</NavLink>
                                 <NavLink tag={Link} className="text-dark" to="/registration">SIGN UP</NavLink>
                                 <NavLink tag={Link} className="text-dark" to="/login">SIGN IN</NavLink> 
+                                <NavLink tag={Link} className="text-dark" to="/accountInfo">Account Information</NavLink> 
                             </div>
                         </Container>
                     </Navbar>
@@ -37,8 +38,8 @@ export class NavMenu extends Component {
                         <div class="sidenav">
                             <NavLink tag={Link} className="text-dark" to="/catalog">Flowers</NavLink>
                             <NavLink tag={Link} className="text-dark" to="/bouquetsCatalog">Bouquets</NavLink>
-                            <NavLink tag={Link} className="text-dark">About</NavLink>
-                            <NavLink tag={Link} className="text-dark">Contacts</NavLink>
+                            <NavLink tag={Link} className="text-dark" to="/about">About</NavLink>
+                            <NavLink tag={Link} className="text-dark" to="/contacts">Contacts</NavLink>
                             <NavLink tag={Link} className="text-dark" to="/ordersManagement">Orders</NavLink>
                         </div>
                     </Container>

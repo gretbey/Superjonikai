@@ -9,6 +9,11 @@ import HomePage from '../components/Home/HomePage';
 import FlowersCatalogPage from '../components/FlowersCatalog/FlowersCatalogPage'
 import BouquetsCatalogPage from '../components/BouquetsCatalog/BouquetsCatalogPage';
 import RegistrationPage from '../components/Registration/RegistrationPage';
+import AboutPage from '../components/About/AboutPage';
+import ContactsPage from '../components/Contacts/ContactsPage';
+import AccountInfo from '../components/AccountInfo/AccountInfo';
+import ItemViewBouquets from '../components/ItemView/ItemViewBouquets';
+import ItemViewFlowers from '../components/ItemView/ItemViewFlowers';
 
 import ShoppingCartPageRoutes from '../routes/ShoppingCartPageRoutes';
 import OrdersManagementPage from '../components/OrdersManagement/OrdersManagementPage';
@@ -30,6 +35,11 @@ class Routes extends React.Component{
                 { component: RegistrationPage, path: "/registration" },
                 { component: ShoppingCartPageRoutes, path: "/cart" },
                 { component: OrdersManagementPage, path: "/ordersManagement" },
+                { component: AboutPage, path: "/about" },
+                { component: ContactsPage, path: "/contacts" },
+                { component: AccountInfo, path: "/accountInfo" },
+                { component: ItemViewBouquets, path: "/itemViewBouquets" },
+                { component: ItemViewFlowers, path: "/itemViewFlowers" }
             ]
         }
     }
