@@ -19,7 +19,9 @@ namespace Superjonikai.Model.Entities
         {
 
         }
+        [Column(TypeName = "varchar(255)")]
         public string PhoneNumber { get; set; }
+        [Column(TypeName = "varchar(255)")]
         public string Token { get; set; }
 
     }

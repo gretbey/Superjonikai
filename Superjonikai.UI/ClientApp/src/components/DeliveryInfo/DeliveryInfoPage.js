@@ -51,7 +51,6 @@ class DeliveryInfoPage extends React.Component {
                             <input id="delivery_date_input" type='date' />
                         </div>
                     </div>
-
                 </div >
             </section>
         )

@@ -2,36 +2,35 @@
 import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { get } from '../../helpers/request'
 import { post } from '../../helpers/request';
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './OrdersManagementPage.css';
-
 class OrdersManagementPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             orders: [
-                { id: 123456, name: 'Tom Jenkins', price: 41.50, deliveryDate: '2021-05-02', status: 'Completed' },
-                { id: 222222, name: 'Lalaila Smith', price: 36.00, deliveryDate: '2021-05-22', status: 'Paid' },
-                { id: 111111, name: 'Thomas Miller', price: 24.00, deliveryDate: '2021-05-12', status: 'Processing' },
-                { id: 123456, name: 'Tom Jenkins', price: 41.00, deliveryDate: '2021-05-02', status: 'Completed' },
-                { id: 222222, name: 'Lalaila Smith', price: 36.30, deliveryDate: '2021-05-22', status: 'Paid' },
-                { id: 111111, name: 'Thomas Miller', price: 24.00, deliveryDate: '2021-05-12', status: 'Processing' },
-                { id: 123456, name: 'Tom Jenkins', price: 41.00, deliveryDate: '2021-05-02', status: 'Completed' },
-                { id: 222222, name: 'Lalaila Smith', price: 36.25, deliveryDate: '2021-05-22', status: 'Paid' },
-                { id: 111111, name: 'Thomas Miller', price: 24.00, deliveryDate: '2021-05-12', status: 'Processing' },
-                { id: 123456, name: 'Tom Jenkins', price: 41.50, deliveryDate: '2021-05-02', status: 'Completed' },
-                { id: 222222, name: 'Lalaila Smith', price: 36.00, deliveryDate: '2021-05-22', status: 'Paid' },
-                { id: 111111, name: 'Thomas Miller', price: 24.00, deliveryDate: '2021-05-12', status: 'Processing' },
-                { id: 123456, name: 'Tom Jenkins', price: 41.00, deliveryDate: '2021-05-02', status: 'Completed' },
-                { id: 222222, name: 'Lalaila Smith', price: 36.30, deliveryDate: '2021-05-22', status: 'Paid' },
-                { id: 111111, name: 'Thomas Miller', price: 24.00, deliveryDate: '2021-05-12', status: 'Processing' },
-                { id: 123456, name: 'Tom Jenkins', price: 41.00, deliveryDate: '2021-05-02', status: 'Completed' },
-                { id: 222222, name: 'Lalaila Smith', price: 36.25, deliveryDate: '2021-05-22', status: 'Paid' },
-                { id: 111111, name: 'Thomas Miller', price: 24.00, deliveryDate: '2021-05-12', status: 'Processing' }
+                { id: 123456, clientName: 'Tom Jenkins', deliveryDate: '2021-05-02', status: 'Completed' },
             ]
         };
+    }
+
+    componentDidMount() {
+
+        get('/allOrders')
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    this.setState({ orders: res.data, loading: false });
+                }
+            })
+            .catch(error => {
+                alert(error);
+                console.error('GET orders failed:')
+                console.error(error);
+            })
     }
 
     render() {
@@ -46,7 +45,6 @@ class OrdersManagementPage extends React.Component {
                             <td><h4> ID </h4></td>
                             <td><h4> Name </h4></td>
                             <td><h4> Delivery date </h4></td>
-                            <td><h4> Price </h4></td>
                             <td><h4> Status </h4></td>
                         </tr>
                     </table>
@@ -68,11 +66,10 @@ class OrdersManagementPage extends React.Component {
                             <table>
                                 <tr>
                                     <td><p class="order_detail" > #{d.id} </p></td>
-                                    <td><p class="order_detail" > {d.name} </p></td>
+                                    <td><p class="order_detail" > {d.clientName} </p></td>
                                     <td><p class="order_detail" > {d.deliveryDate} </p></td>
-                                    <td><p class="order_detail" > {d.price} €</p></td>
                                     <td><p class="order_detail" > {d.status} </p></td>
-                                    <td><NavLink tag={Link} id="details_link" class="order_detail" to="/details">details</NavLink></td>
+                                    <td><Link id="details_link" class="order_detail" to={{ pathname: "/ordersDetailPage", search: `?id=${d.id}` }} >details</Link></td>
                                 </tr>
                             </table>
                         </li>)

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Superjonikai.DB;
 
 namespace Superjonikai.DB.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20210517193835_rowVersionAdd")]
+    partial class rowVersionAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -282,30 +284,9 @@ namespace Superjonikai.DB.Migrations
                         new
                         {
                             Id = 1,
-                            ClientName = "Tom Jenkins",
-                            DeliveryDate = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "Completed"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ClientName = "Lalaila Smith",
-                            DeliveryDate = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "Paid"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ClientName = "Thomas Miller",
+                            ClientName = "Kasparas",
                             DeliveryDate = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "Processing"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ClientName = "John Brown",
-                            DeliveryDate = new DateTime(2021, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = "Completed"
                         });
                 });
 

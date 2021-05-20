@@ -12,6 +12,7 @@ import RegistrationPage from '../components/Registration/RegistrationPage';
 
 import ShoppingCartPageRoutes from '../routes/ShoppingCartPageRoutes';
 import OrdersManagementPage from '../components/OrdersManagement/OrdersManagementPage';
+import OrdersDetailsPage from '../components/OrderDetails/OrderDetailsPage';
 
 const FlowersPageWraped = () =>
     <Layout>
@@ -30,6 +31,7 @@ class Routes extends React.Component{
                 { component: RegistrationPage, path: "/registration" },
                 { component: ShoppingCartPageRoutes, path: "/cart" },
                 { component: OrdersManagementPage, path: "/ordersManagement" },
+                { component: OrdersDetailsPage, path: "/ordersDetailPage" },
             ]
         }
     }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Superjonikai.Model.Entities;
+using Superjonikai.Model.Entities.GiftCard;
+using Superjonikai.Model.Entities.Order;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -94,6 +96,67 @@ namespace Superjonikai.DB
                   LastName = "b"
               }
            );
+            modelBuilder.Entity<GiftCard>().HasData(
+             new GiftCard
+             {
+                 Id = 1,
+                 Type = GiftCardType.BirthDay,
+                 Message = "Happy birthday",
+                 Price = 3.40
+             },
+             new GiftCard
+             {
+                 Id = 2,
+                 Type = GiftCardType.WomensDay,
+                 Message = "For my beautiful women",
+                 Price = 5.1
+             }
+          );
+            modelBuilder.Entity<Order>().HasData(
+                new Order
+                {
+                    Id = 1,
+                    ClientName = "Tom Jenkins",
+                    DeliveryDate = new DateTime(2021, 5, 16),
+                    Status = OrderStatus.Completed,
+                },
+                new Order
+                {
+                    Id = 2,
+                    ClientName = "Lalaila Smith",
+                    DeliveryDate = new DateTime(2021, 5, 16),
+                    Status = OrderStatus.Paid,
+                },
+                new Order
+                {
+                    Id = 3,
+                    ClientName = "Thomas Miller",
+                    DeliveryDate = new DateTime(2021, 5, 16),
+                    Status = OrderStatus.Processing,
+                },
+                new Order
+                {
+                    Id = 4,
+                    ClientName = "John Brown",
+                    DeliveryDate = new DateTime(2021, 5, 16),
+                    Status = OrderStatus.Completed,
+                }
+
+          );
+            modelBuilder.Entity<FlowerOrder>().HasData(
+                new FlowerOrder
+                {
+                    FlowerId=2,
+                    OrderId=1,
+                }
+            );
+            modelBuilder.Entity<BouquetOrder>().HasData(
+                new BouquetOrder
+                {
+                    BouquetId = 2,
+                    OrderId = 1,
+                }
+            );
         }
     }
 }
