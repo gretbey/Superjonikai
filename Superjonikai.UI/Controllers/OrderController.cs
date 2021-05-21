@@ -33,5 +33,12 @@ namespace Superjonikai.UI.Controllers
         {
             return _orderService.UpdateOrder(order);
         }
+
+        [HttpGet("/clientOrders/{clientName}")]
+        public ServerResult<List<Item>> GetItemsByClientName([FromRoute] string clientName)
+        {
+            return _orderService.GetItemsByClientName(clientName);
+        }
+
     }
 }

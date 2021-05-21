@@ -8,6 +8,7 @@ namespace Superjonikai.Model.Entities
     {
         public int BouquetId { get; set; }
         public virtual Bouquet Bouquet { get; set; }
+        public string Size { get; set; }
         public int OrderId { get; set; }
         public virtual Order.Order Order { get; set; }
 

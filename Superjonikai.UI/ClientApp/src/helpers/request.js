@@ -38,6 +38,7 @@ export function get(url, params = {}) {
             'Authorization': 'Token ' + getCookie('AuthToken'),
         }
     })
+    .then(res => handleErrors(res))
 }
 
 export function put(url, params = {}) {

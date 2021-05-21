@@ -22,10 +22,11 @@ namespace Superjonikai.UI.Controllers
             return _bouquetsService.GetAll();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/bouquets/{id}")]
         public ServerResult<Bouquet> GetBouquet([FromRoute] int id)
         {
             return _bouquetsService.Get(id);
         }
+
     }
 }

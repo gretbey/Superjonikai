@@ -22,7 +22,7 @@ namespace Superjonikai.UI.Controllers
             return _flowersService.GetAll();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/flowers/{id}")]
         public ServerResult<Flower> GetFlower([FromRoute] int id)
         {
             return _flowersService.Get(id);

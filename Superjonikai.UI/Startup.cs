@@ -108,6 +108,8 @@ namespace Superjonikai.UI
             container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
             container.Register<IOrderRepository, OrderSqlRepository>(Lifestyle.Scoped);
             container.Register<IGiftCardRepository, GiftCardSqlRepository>(Lifestyle.Scoped);
+            container.Register<IBouquetOrderRepository, BouquetOrderSqlRepository>(Lifestyle.Scoped);
+            container.Register<IFlowerOrderRepository, FlowerOrderSqlRepository>(Lifestyle.Scoped);
         }
     }
 }

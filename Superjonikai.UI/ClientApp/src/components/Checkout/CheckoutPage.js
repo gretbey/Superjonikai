@@ -2,7 +2,7 @@
 import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { post } from '../../helpers/request';
+import { get, post } from '../../helpers/request';
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './CheckoutPage.css';
@@ -12,13 +12,33 @@ class CheckoutPage extends React.Component {
         super(props);
         this.state = {
             items: [
-                { id: 123456, name:'Spring Boquet', itemType: 'Boquet', price: 41.50, size: 'Medium' },
-                { id: 123456, name: 'Spring Boquet', itemType: 'Boquet', price: 41.50, size: 'Medium' },
-                { id: 123456, name: 'Spring Boquet', itemType: 'Boquet', price: 41.50, size: 'Medium' },
-                { id: 123456, name: 'Spring Boquet', itemType: 'Boquet', price: 41.50, size: 'Medium' }
-            ]
+                { id: 123456, name: 'Tulips', itemType: 'Flower', price: 0.7, quantity: 3, totalPrice: 2.1},
+            ],
+            clientName: "TitasGrigaitis" /* now hardcoded, later will be changed*/,
         };
     }
+
+    componentDidMount() {
+        get(`clientOrders/${this.state.clientName}`)
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    this.setState({
+                        items: res.data,
+                        loading: false
+                    })
+                }
+                else {
+                    console.warn(`Cannot get orders:`);
+                    console.warn(res.message);
+                }
+            })
+            .catch(error => {
+                console.error(`GET orders/${this.state.clientName} failed:`);
+                console.error(error);
+            });
+    }
+
 
     render() {
         return (
@@ -55,9 +75,10 @@ class CheckoutPage extends React.Component {
                             <table>
                                 <tr>
                                     <td><img class="item_img" src="https://www.floristikosnamai.lt/image/cache/catalog/geles/RAUDONOS-TULPES-1000x1000.jpg" /></td>
-                                    <td><p class="order_detail" > {d.name} </p></td>
-                                    <td><p class="order_detail" > Size: {d.size} </p></td>
-                                    <td><p class="order_detail" > {d.price} €</p></td>
+                                    <td><p class="order_detail" > Name: {d.name} </p></td>
+                                    <td><p class="order_detail" > Quantity/Size: {d.size} {d.quantity} </p></td>
+                                    <td><p class="order_detail" > Price per unit: {d.price} €</p></td>
+                                    <td><p class="order_detail" > Total: {d.totalPrice} €</p></td>
                                     <button type="button" className="remove_item_btn" >X</button>
                                 </tr>
                             </table>

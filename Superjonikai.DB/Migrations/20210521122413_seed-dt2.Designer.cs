@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Superjonikai.DB;
 
 namespace Superjonikai.DB.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20210521122413_seed-dt2")]
+    partial class seeddt2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,9 +88,6 @@ namespace Superjonikai.DB.Migrations
                     b.Property<int>("BouquetId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Size")
-                        .HasColumnType("longtext");
-
                     b.HasKey("OrderId", "BouquetId");
 
                     b.HasIndex("BouquetId");
@@ -99,8 +98,7 @@ namespace Superjonikai.DB.Migrations
                         new
                         {
                             OrderId = 1,
-                            BouquetId = 2,
-                            Size = "medium"
+                            BouquetId = 2
                         });
                 });
 
@@ -166,9 +164,6 @@ namespace Superjonikai.DB.Migrations
                     b.Property<int>("FlowerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.HasKey("OrderId", "FlowerId");
 
                     b.HasIndex("FlowerId");
@@ -179,20 +174,17 @@ namespace Superjonikai.DB.Migrations
                         new
                         {
                             OrderId = 1,
-                            FlowerId = 2,
-                            Quantity = 6
+                            FlowerId = 2
                         },
                         new
                         {
                             OrderId = 5,
-                            FlowerId = 2,
-                            Quantity = 3
+                            FlowerId = 2
                         },
                         new
                         {
                             OrderId = 5,
-                            FlowerId = 1,
-                            Quantity = 3
+                            FlowerId = 1
                         });
                 });
 

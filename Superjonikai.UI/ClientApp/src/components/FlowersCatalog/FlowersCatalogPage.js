@@ -41,7 +41,7 @@ class FlowersCatalogPage extends React.Component {
             const { id, name, price, color } = flower
             return (
                 <div class="product-card">
-                    <Link to={{ pathname: `itemViewFlowers/${flower.name}`, state: { flower } }}>
+                    <Link to={{ pathname: `itemViewFlowers/${flower.name}`, state: { flower }, search: `?id=${id}` }}>
                     <img class="img" src="https://www.floristikosnamai.lt/image/cache/catalog/geles/RAUDONOS-TULPES-1000x1000.jpg" />
                         <br />
                     </Link>

@@ -41,7 +41,7 @@ class BouquetsCatalogPage extends React.Component {
             const { id, name, price, color } = bouquet
             return (
                 <div class="product-card">
-                    <Link to={{ pathname: `itemViewBouquets/${bouquet.name}`, state: { bouquet } }}>
+                    <Link to={{ pathname: `itemViewBouquets/${bouquet.name}`, state: { bouquet }, search: `?id=${id}` }}>
                     <img class="img" src="https://www.realflowers.co.uk/pub/media/catalog/product/cache/70584c3f10463a2342ffe93acb98e4d0/s/i/simply_gorgeous_bouquet.jpg" />
                         <br />
                     </Link>
