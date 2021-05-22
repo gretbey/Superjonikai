@@ -76,7 +76,6 @@ class OrderDetailsPage extends React.Component {
             orderId
         } = this.state;
 
-        alert(status)
         put('/UpdateOrder', {
             id: orderId,
             clientName: clientName,

@@ -18,7 +18,9 @@ namespace Superjonikai.DB.SQLRepository
 
         public FlowerOrder Add(FlowerOrder entity)
         {
-            throw new NotImplementedException();
+            context.FlowerOrders.Add(entity);
+            context.SaveChanges();
+            return entity;
         }
 
         public FlowerOrder Delete(int id)
@@ -38,7 +40,10 @@ namespace Superjonikai.DB.SQLRepository
 
         public FlowerOrder Update(FlowerOrder entity)
         {
-            throw new NotImplementedException();
+            var flowerOrder = context.FlowerOrders.Attach(entity);
+            flowerOrder.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+            return entity;
         }
     }
 }

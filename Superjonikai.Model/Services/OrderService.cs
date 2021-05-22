@@ -126,5 +126,43 @@ namespace Superjonikai.Model.Services
             };
         }
 
+        public ServerResult<Order> AddToCart(Item item)
+        {
+            DateTime date = DateTime.Now;
+            string clientName = "SimaSimaite";//hardcoded, paskui gauti realu esama vartotoja (BET JIS NEBUTINAI TURI BUT)
+            var lastId = _orderRepo.GetAll().Last().Id; // siaip nereikia, bet kaip dabar gaut
+            var userOrder = _orderRepo.GetAll().Where(t => t.ClientName == clientName);
+            if (userOrder.Count() == 0)//find existing user order, data tikrint
+            {
+                Entities.Order.Order order = new Entities.Order.Order()
+                {
+                    Id = lastId + 1,
+                    ClientName = clientName,
+                    Status = Entities.Order.OrderStatus.Processing,
+                    DeliveryDate = DateTime.Now,
+                };//order id automatiskai kaip gaut ar daryt last + 1
+                _orderRepo.Add(order);
+
+                Entities.FlowerOrder flowerOrder = new Entities.FlowerOrder()
+                {
+                    FlowerId = item.Id,
+                    OrderId = lastId + 1,
+                    Quantity = item.Quantity,
+                };
+                _flowerOrderRepo.Add(flowerOrder);
+            }
+            else
+            {
+                Entities.FlowerOrder flowerOrder = new Entities.FlowerOrder()
+                {
+                    FlowerId = item.Id,
+                    OrderId = userOrder.Last().Id,//check
+                    Quantity = item.Quantity,
+                };
+                _flowerOrderRepo.Add(flowerOrder);
+            }
+
+            return new ServerResult<Order>() { Success = true };
+        }
     }
 }

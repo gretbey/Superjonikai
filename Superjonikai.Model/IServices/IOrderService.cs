@@ -11,5 +11,6 @@ namespace Superjonikai.Model.IServices
         ServerResult<Order> Get(int id);
         ServerResult<Order> UpdateOrder(Order order);
         ServerResult<List<Item>> GetItemsByClientName(string clientName);
+        ServerResult<Order> AddToCart(Item item);
     }
 }

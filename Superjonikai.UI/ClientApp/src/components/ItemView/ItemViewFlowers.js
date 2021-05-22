@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { get, post } from '../../helpers/request'
+import { get, post, post2 } from '../../helpers/request'
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './ItemViewStyle.css';
@@ -72,13 +72,13 @@ class ItemViewFlowers extends React.Component {
                                 <option value="nine">9</option>
                             </select>
                         </div>
-                        <div class="column">
+                        /*<div class="column">
                             <p>Pc.  0.00€ </p>
-                        </div>
+                        </div>*/
                     </div>
                     <br />
                     <div>
-                        <button type="addToCart" className="btnToCart">Add To Cart</button>
+                        <button type="addToCart" className="btnToCart" onClick={() => this.update()}>Add To Cart</button>
                     </div>
                     <br />
                     <div>
@@ -89,6 +89,38 @@ class ItemViewFlowers extends React.Component {
                 </div>
             </div>
         )
+    }
+
+    update() {
+        const {
+            flower,
+            price,
+            name,
+            color,
+            flowerId
+        } = this.state;
+
+        post2('/add/{flower}', {
+            id: flowerId,
+            price: price,
+            name: name,
+            color: color,
+            flowerId: flowerId
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    alert("Succesfully added to cart!");
+                }
+                else {
+                    alert("Can't add this to cart")
+                }
+            })
+            .catch(error => {
+                alert(error)
+                console.error(`POST api/add/${flower} failed:`)
+                console.error(error)
+            });
     }
 }
 

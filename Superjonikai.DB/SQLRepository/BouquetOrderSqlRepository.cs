@@ -18,7 +18,9 @@ namespace Superjonikai.DB.SQLRepository
 
         public BouquetOrder Add(BouquetOrder entity)
         {
-            throw new NotImplementedException();
+            context.BouquetOrders.Add(entity);
+            context.SaveChanges();
+            return entity;
         }
 
         public BouquetOrder Delete(int id)

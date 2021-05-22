@@ -70,7 +70,6 @@ export class ShoppingCartPage extends Component {
     renderSummaryData() {
         this.state.items.map(item => {
             this.state.subTotal += item.totalPrice
-            alert(this.state.subTotal)
             return
         })
         this.state.total = this.state.subTotal + this.state.deliveryPrice
