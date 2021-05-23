@@ -6,6 +6,7 @@ import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './AccountInfo.css';
 import Swal from 'sweetalert2';
+import currentUser from '../../redux/reducers/currentUser';
 
 class AccountInfo extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class AccountInfo extends React.Component {
         this.state = {
             current_pass: null,
             new_pass: null,
-            confrm_pass: null
+            confrm_pass: null,
         };
 
         this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -71,13 +72,13 @@ class AccountInfo extends React.Component {
                     <br />
                     <div className='user-info'>
                         <div>
-                            <label className="firstName">First Name:</label>
+                            <label className="firstName">First Name: {this.props.currentUser.firstName}</label>
                         </div>
                         <div>
-                            <label className="lastName">Last Name:</label>
+                            <label className="lastName">Last Name: {this.props.currentUser.lastName} </label>
                         </div>
                         <div>
-                            <label className="email">Email:</label>
+                            <label className="email">Email: {this.props.currentUser.email} </label>
                         </div>
                     </div>
 

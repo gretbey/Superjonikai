@@ -38,7 +38,7 @@ class ItemViewFlowers extends React.Component {
                 }
             })
             .catch(error => {
-                console.error(`GET flowers/${this.state.orderId} failed:`);
+                console.error(`GET flowers/${this.state.flowerId} failed:`);
                 console.error(error);
             });
     }
@@ -66,10 +66,10 @@ class ItemViewFlowers extends React.Component {
                     <div class='row'>
                         <div class="column">
                             <label for="pc."></label>
-                            <select name="size" id="size">
-                                <option value="three">3</option>
-                                <option value="six">6</option>
-                                <option value="nine">9</option>
+                            <select name="size" id="size" onChange={this.handleChange}>
+                                <option value="3">3</option>
+                                <option value="6">6</option>
+                                <option value="9">9</option>
                             </select>
                         </div>
                         /*<div class="column">
@@ -78,7 +78,7 @@ class ItemViewFlowers extends React.Component {
                     </div>
                     <br />
                     <div>
-                        <button type="addToCart" className="btnToCart" onClick={() => this.update()}>Add To Cart</button>
+                        <button type="addToCart" className="btnToCart" onClick={() => this.addToCart()}>Add To Cart</button>
                     </div>
                     <br />
                     <div>
@@ -91,13 +91,17 @@ class ItemViewFlowers extends React.Component {
         )
     }
 
-    update() {
+    handleChange = (event) => {
+        this.setState({ quantity: event.target.value });
+    };
+
+    addToCart() {
         const {
             flower,
             price,
             name,
             color,
-            flowerId
+            flowerId,
         } = this.state;
 
         post2('/add/{flower}', {
@@ -105,7 +109,8 @@ class ItemViewFlowers extends React.Component {
             price: price,
             name: name,
             color: color,
-            flowerId: flowerId
+            flowerId: flowerId,
+            quantity: 3
         })
             .then(res => res.json())
             .then(res => {
@@ -113,7 +118,7 @@ class ItemViewFlowers extends React.Component {
                     alert("Succesfully added to cart!");
                 }
                 else {
-                    alert("Can't add this to cart")
+                    alert("You already added this item to cart")
                 }
             })
             .catch(error => {

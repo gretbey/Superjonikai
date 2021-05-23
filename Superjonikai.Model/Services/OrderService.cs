@@ -128,41 +128,74 @@ namespace Superjonikai.Model.Services
 
         public ServerResult<Order> AddToCart(Item item)
         {
-            DateTime date = DateTime.Now;
-            string clientName = "SimaSimaite";//hardcoded, paskui gauti realu esama vartotoja (BET JIS NEBUTINAI TURI BUT)
-            var lastId = _orderRepo.GetAll().Last().Id; // siaip nereikia, bet kaip dabar gaut
-            var userOrder = _orderRepo.GetAll().Where(t => t.ClientName == clientName);
-            if (userOrder.Count() == 0)//find existing user order, data tikrint
+            try
             {
-                Entities.Order.Order order = new Entities.Order.Order()
+                DateTime date = DateTime.Now;
+                string clientName = "TitasGrigaitis";
+                var lastId = _orderRepo.GetAll().Last().Id;
+                var userOrder = _orderRepo.GetAll().Where(t => t.ClientName == clientName);
+                if (userOrder.Count() == 0)
                 {
-                    Id = lastId + 1,
-                    ClientName = clientName,
-                    Status = Entities.Order.OrderStatus.Processing,
-                    DeliveryDate = DateTime.Now,
-                };//order id automatiskai kaip gaut ar daryt last + 1
-                _orderRepo.Add(order);
+                    Entities.Order.Order order = new Entities.Order.Order()
+                    {
+                        Id = lastId + 1,
+                        ClientName = clientName,
+                        Status = Entities.Order.OrderStatus.Processing,
+                        DeliveryDate = DateTime.Now,
+                    };
+                    _orderRepo.Add(order);
+                    if (item.Quantity != 0) // so it is flower not bouquet
+                    {
+                        Entities.FlowerOrder flowerOrder = new Entities.FlowerOrder()
+                        {
+                            FlowerId = item.Id,
+                            OrderId = lastId + 1,
+                            Quantity = item.Quantity,
+                        };
+                        _flowerOrderRepo.Add(flowerOrder);
+                    }
+                    else
+                    {
+                        Entities.BouquetOrder bouquetOrder = new Entities.BouquetOrder()
+                        {
+                            BouquetId = item.Id,
+                            OrderId = lastId + 1,
+                            Size = item.Size
+                        };
+                        _bouquetOrderRepo.Add(bouquetOrder);
+                    }
+                }
+                else
+                {
+                    if (item.Quantity != 0)
+                    {
+                        Entities.FlowerOrder flowerOrder = new Entities.FlowerOrder()
+                        {
+                            FlowerId = item.Id,
+                            OrderId = userOrder.Last().Id,
+                            Quantity = item.Quantity,
+                        };
+                        _flowerOrderRepo.Add(flowerOrder);
+                    }
+                    else
+                    {
+                        Entities.BouquetOrder bouquetOrder = new Entities.BouquetOrder()
+                        {
+                            BouquetId = item.Id,
+                            OrderId = userOrder.Last().Id,
+                            Size = item.Size
+                        };
+                        _bouquetOrderRepo.Add(bouquetOrder);
+                    }
+                }
 
-                Entities.FlowerOrder flowerOrder = new Entities.FlowerOrder()
-                {
-                    FlowerId = item.Id,
-                    OrderId = lastId + 1,
-                    Quantity = item.Quantity,
-                };
-                _flowerOrderRepo.Add(flowerOrder);
+                return new ServerResult<Order>() { Success = true };
             }
-            else
+            catch (Exception ex)
             {
-                Entities.FlowerOrder flowerOrder = new Entities.FlowerOrder()
-                {
-                    FlowerId = item.Id,
-                    OrderId = userOrder.Last().Id,//check
-                    Quantity = item.Quantity,
-                };
-                _flowerOrderRepo.Add(flowerOrder);
+                Console.WriteLine("Cannot update database" + ex.Message);
+                return new ServerResult<Order>() { Success = false };
             }
-
-            return new ServerResult<Order>() { Success = true };
         }
     }
 }

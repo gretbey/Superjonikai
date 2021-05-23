@@ -17,23 +17,23 @@ class FlowersCatalogPage extends React.Component {
             sortedFlowers: this.flowers,
             priceLowRange: 0,
             priceHighRange: 50
-        };  
+        };
     };
 
     componentDidMount() {
 
         get('/allFlowers')
-                .then(res => res.json())
-                .then(res => {
-                    if (res.success) {
-                        this.setState({ flowers: res.data, loading: false });
-                    }
-                })
-                .catch(error => {
-                    alert(error);
-                    console.error('GET flowers failed:')
-                    console.error(error);
-                })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    this.setState({ flowers: res.data, loading: false });
+                }
+            })
+            .catch(error => {
+                alert(error);
+                console.error('GET flowers failed:')
+                console.error(error);
+            })
     }
 
     renderTableData() {
@@ -42,7 +42,7 @@ class FlowersCatalogPage extends React.Component {
             return (
                 <div class="product-card">
                     <Link to={{ pathname: `itemViewFlowers/${flower.name}`, state: { flower }, search: `?id=${id}` }}>
-                    <img class="img" src="https://www.floristikosnamai.lt/image/cache/catalog/geles/RAUDONOS-TULPES-1000x1000.jpg" />
+                        <img class="img" src="https://www.floristikosnamai.lt/image/cache/catalog/geles/RAUDONOS-TULPES-1000x1000.jpg" />
                         <br />
                     </Link>
                     <div class="product-info">
@@ -95,14 +95,14 @@ class FlowersCatalogPage extends React.Component {
         return (
             <div>
                 <tbody>
-                    <div className='catalog-wrapper'>
+                    <div className='top'>
                         <h2 className="title">Flowers</h2>
-                        <br/>
+                        <br />
                         <div className="sorting">
                             <h3 className="inline" id="PriceRange">Price range</h3>
-                            <input className="inline" id="InputText" type="text" placeholder="0" onKeyPress={this.priceLowRangeChanged} onKeyUp={this.priceLowRangeChanged}/>
+                            <input className="inline" id="InputText" type="text" placeholder="0" onKeyPress={this.priceLowRangeChanged} onKeyUp={this.priceLowRangeChanged} />
                             <h3 className="inline">  -  </h3>
-                            <input className="inline" id="InputText" type="text" placeholder="50" onKeyPress={this.priceHighRangeChanged} onKeyUp={this.priceHighRangeChanged}/>
+                            <input className="inline" id="InputText" type="text" placeholder="50" onKeyPress={this.priceHighRangeChanged} onKeyUp={this.priceHighRangeChanged} />
                             <select className="inline" id="sort" onChange={this.handleChange} value={this.value}>
                                 <option value="-"></option>
                                 <option value="sortByPriceAsc">Sort By Price Asc</option>
@@ -111,9 +111,9 @@ class FlowersCatalogPage extends React.Component {
                                 <option value="sortByNameDes">Sort By Name Des</option>
                             </select>
                         </div>
-                        <div class="products">
-                            {this.renderTableData()}
-                        </div>
+                    </div>
+                    <div class="products">
+                        {this.renderTableData()}
                     </div>
                 </tbody>
             </div>

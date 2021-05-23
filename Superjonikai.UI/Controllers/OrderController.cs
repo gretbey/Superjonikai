@@ -42,7 +42,7 @@ namespace Superjonikai.UI.Controllers
         }
 
         [HttpPost("/add/{item}")]
-        public ServerResult<Order> AddToCart([FromBody] Item item)// reikia gauti flowerid is to lango, quantity
+        public ServerResult<Order> AddToCart([FromBody] Item item)
         {
             return _orderService.AddToCart(item);
         }

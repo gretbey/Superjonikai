@@ -14,7 +14,7 @@ class CheckoutPage extends React.Component {
             items: [
                 { id: 123456, name: 'Tulips', itemType: 'Flower', price: 0.7, quantity: 3, totalPrice: 2.1},
             ],
-            clientName: "TitasGrigaitis" /* now hardcoded, later will be changed*/,
+            clientName: this.props.currentUser.firstName.concat(this.props.currentUser.lastName),
         };
     }
 

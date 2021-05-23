@@ -15,7 +15,7 @@ export class ShoppingCartPage extends Component {
 
         this.state = {
             collapsed: true,
-            clientName: "TitasGrigaitis" /* now hardcoded, later will be changed*/,
+            clientName: "TitasGrigaitis",
             items: [],
             subTotal: 0,
             total: 0,
