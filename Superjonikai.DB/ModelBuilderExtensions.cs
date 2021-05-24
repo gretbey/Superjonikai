@@ -93,7 +93,9 @@ namespace Superjonikai.DB
                   Id = 1,
                   Email = "gg",
                   FirstName = "a",
-                  LastName = "b"
+                  LastName = "b",
+                  PhoneNumber = "864444444",
+                  Token = "2"
               }
            );
             modelBuilder.Entity<GiftCard>().HasData(
@@ -188,7 +190,9 @@ namespace Superjonikai.DB
                   Id = 2,
                   Email = "titasgg@gmail.com",
                   FirstName = "Titas",
-                  LastName = "Grigaitis"
+                  LastName = "Grigaitis",
+                  PhoneNumber = "8633434434",
+                  Token = "1"
               }
            );
 
