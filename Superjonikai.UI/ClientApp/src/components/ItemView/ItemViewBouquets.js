@@ -1,18 +1,46 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { post } from '../../helpers/request'
+import { get, post, post2 } from '../../helpers/request'
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './ItemViewStyle.css';
 
 class ItemViewBouquets extends React.Component {
-
     constructor(props) {
         super(props);
+        const query = new URLSearchParams(window.location.search);
         this.state = {
-            bouquet: { id: '', name: '-', price: '0.00', color: '' }
-        };
+            bouquet: null,
+            price: null,
+            name: null,
+            color: null,
+            bouquetId: query.get("id"),
+        }
+    }
+
+    componentDidMount() {
+        get(`bouquets/${this.state.bouquetId}`)
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    this.setState({
+                        bouquet: res.data,
+                        price: res.data.price,
+                        name: res.data.name,
+                        color: res.data.color,
+                        bouquetId: res.data.id,
+                    })
+                }
+                else {
+                    console.warn(`Cannot get bouquet:`);
+                    console.warn(res.message);
+                }
+            })
+            .catch(error => {
+                console.error(`GET bouquets/${this.state.bouquetId} failed:`);
+                console.error(error);
+            });
     }
 
 
@@ -40,7 +68,7 @@ class ItemViewBouquets extends React.Component {
                         </div>
                         <br />
                         <div className='row'>
-                            <button type="addToCart" className="btnToCart">Add To Cart</button>
+                            <button type="addToCart" className="btnToCart" onClick={() => this.addToCart()}>Add To Cart</button>
                         </div>
                         <div className='row'>
                             <Link to={{ pathname: `/bouquetsCatalog` }}>
@@ -51,6 +79,39 @@ class ItemViewBouquets extends React.Component {
                 </div>
             </div>
         )
+    };
+
+    addToCart() {
+        const {
+            bouquet,
+            price,
+            name,
+            color,
+            bouquetId
+        } = this.state;
+
+        post2('/add/{bouquet}', {
+            id: bouquetId,
+            price: price,
+            name: name,
+            color: color,
+            bouquetId: bouquetId,
+            size: "small"
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    alert("Succesfully added to cart!");
+                }
+                else {
+                    alert("You already added this item to cart")
+                }
+            })
+            .catch(error => {
+                alert(error)
+                console.error(`POST api/add/${bouquet} failed:`)
+                console.error(error)
+            });
     }
 }
 

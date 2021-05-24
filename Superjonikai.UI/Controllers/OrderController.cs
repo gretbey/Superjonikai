@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Superjonikai.Model.DTO;
 using Superjonikai.Model.IServices;
+using System;
 using System.Collections.Generic;
 
 namespace Superjonikai.UI.Controllers
@@ -33,5 +34,18 @@ namespace Superjonikai.UI.Controllers
         {
             return _orderService.UpdateOrder(order);
         }
+
+        [HttpGet("/clientOrders/{clientName}")]
+        public ServerResult<List<Item>> GetItemsByClientName([FromRoute] string clientName)
+        {
+            return _orderService.GetItemsByClientName(clientName);
+        }
+
+        [HttpPost("/add/{item}")]
+        public ServerResult<Order> AddToCart([FromBody] Item item)
+        {
+            return _orderService.AddToCart(item);
+        }
+
     }
 }

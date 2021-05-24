@@ -63,8 +63,8 @@ class LoginPage extends React.Component{
 
     render(){
         return(
-            <div className='login-wrapper'>
-                <div className='login-holder'>
+            <div className='loginContainer'>
+                <div className='form-holder'>
                     <div>
                         <label className="login-label">LOGIN</label>
                     </div>

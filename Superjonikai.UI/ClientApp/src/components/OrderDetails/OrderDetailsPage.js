@@ -48,7 +48,7 @@ class OrderDetailsPage extends React.Component {
         return (
             <div>
                 <tbody>
-                    <div className='catalog-wrapper'>
+                    <div className='details'>
                         <p><b>Order id: </b>{this.state.orderId}</p>
                         <p><b>Client: </b>{this.state.clientName}</p>
                         <p><b>Delivery date: </b>{this.state.deliveryDate}</p>
@@ -76,7 +76,6 @@ class OrderDetailsPage extends React.Component {
             orderId
         } = this.state;
 
-        alert(status)
         put('/UpdateOrder', {
             id: orderId,
             clientName: clientName,

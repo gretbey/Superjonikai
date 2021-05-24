@@ -93,7 +93,9 @@ namespace Superjonikai.DB
                   Id = 1,
                   Email = "gg",
                   FirstName = "a",
-                  LastName = "b"
+                  LastName = "b",
+                  PhoneNumber = "864444444",
+                  Token = "2"
               }
            );
             modelBuilder.Entity<GiftCard>().HasData(
@@ -113,41 +115,49 @@ namespace Superjonikai.DB
              }
           );
             modelBuilder.Entity<Order>().HasData(
-                new Order
-                {
-                    Id = 1,
-                    ClientName = "Tom Jenkins",
-                    DeliveryDate = new DateTime(2021, 5, 16),
-                    Status = OrderStatus.Completed,
-                },
-                new Order
-                {
-                    Id = 2,
-                    ClientName = "Lalaila Smith",
-                    DeliveryDate = new DateTime(2021, 5, 16),
-                    Status = OrderStatus.Paid,
-                },
-                new Order
-                {
-                    Id = 3,
-                    ClientName = "Thomas Miller",
-                    DeliveryDate = new DateTime(2021, 5, 16),
-                    Status = OrderStatus.Processing,
-                },
-                new Order
-                {
-                    Id = 4,
-                    ClientName = "John Brown",
-                    DeliveryDate = new DateTime(2021, 5, 16),
-                    Status = OrderStatus.Completed,
-                }
+                 new Order
+                 {
+                     Id = 1,
+                     ClientName = "Tom Jenkins",
+                     DeliveryDate = new DateTime(2021, 5, 16),
+                     Status = OrderStatus.Completed,
+                 },
+                 new Order
+                 {
+                     Id = 2,
+                     ClientName = "Lalaila Smith",
+                     DeliveryDate = new DateTime(2021, 5, 16),
+                     Status = OrderStatus.Paid,
+                 },
+                 new Order
+                 {
+                     Id = 3,
+                     ClientName = "Thomas Miller",
+                     DeliveryDate = new DateTime(2021, 5, 16),
+                     Status = OrderStatus.Processing,
+                 },
+                 new Order
+                 {
+                     Id = 4,
+                     ClientName = "John Brown",
+                     DeliveryDate = new DateTime(2021, 5, 16),
+                     Status = OrderStatus.Completed,
+                 },
+                 new Order
+                 {
+                     Id = 5,
+                     ClientName = "TitasGrigaitis",
+                     DeliveryDate = new DateTime(2021, 05, 21),
+                     Status = OrderStatus.AwaitingPayment
+                 }
 
-          );
+           );
             modelBuilder.Entity<FlowerOrder>().HasData(
                 new FlowerOrder
                 {
-                    FlowerId=2,
-                    OrderId=1,
+                    FlowerId = 2,
+                    OrderId = 1,
+                    Quantity = 6
                 }
             );
             modelBuilder.Entity<BouquetOrder>().HasData(
@@ -155,8 +165,37 @@ namespace Superjonikai.DB
                 {
                     BouquetId = 2,
                     OrderId = 1,
+                    Size = "medium"
                 }
             );
+            modelBuilder.Entity<FlowerOrder>().HasData(
+                new FlowerOrder
+                {
+                    FlowerId = 2,
+                    OrderId = 5,
+                    Quantity = 3
+                }
+            );
+            modelBuilder.Entity<FlowerOrder>().HasData(
+                new FlowerOrder
+                {
+                    FlowerId = 1,
+                    OrderId = 5,
+                    Quantity = 3
+                }
+            );
+            modelBuilder.Entity<User>().HasData(
+              new User
+              {
+                  Id = 2,
+                  Email = "titasgg@gmail.com",
+                  FirstName = "Titas",
+                  LastName = "Grigaitis",
+                  PhoneNumber = "8633434434",
+                  Token = "1"
+              }
+           );
+
         }
     }
 }

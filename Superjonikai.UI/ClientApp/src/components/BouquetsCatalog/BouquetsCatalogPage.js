@@ -41,7 +41,7 @@ class BouquetsCatalogPage extends React.Component {
             const { id, name, price, color } = bouquet
             return (
                 <div class="product-card">
-                    <Link to={{ pathname: `itemViewBouquets/${bouquet.name}`, state: { bouquet } }}>
+                    <Link to={{ pathname: `itemViewBouquets/${bouquet.name}`, state: { bouquet }, search: `?id=${id}` }}>
                     <img class="img" src="https://www.realflowers.co.uk/pub/media/catalog/product/cache/70584c3f10463a2342ffe93acb98e4d0/s/i/simply_gorgeous_bouquet.jpg" />
                         <br />
                     </Link>
@@ -97,34 +97,31 @@ class BouquetsCatalogPage extends React.Component {
         return (
             <div>
                 <tbody>
-                    <div className="boundary">
-                        <div className='catalog-wrapper'>
-                            <h2 className="title">Bouquets</h2>
-                            <br />
-                            <div className="sorting">
-                                <h3 className="inline" id="PriceRange">Price range</h3>
-                                <input className="inline" id="InputText" type="text" placeholder="0" onKeyPress={this.priceLowRangeChanged} onKeyUp={this.priceLowRangeChanged} />
-                                <h3 className="inline">  -  </h3>
-                                <input className="inline" id="InputText" type="text" placeholder="200" onKeyPress={this.priceHighRangeChanged} onKeyUp={this.priceHighRangeChanged} />
-                                <select className="inline" id="sort" onChange={this.handleChange} value={this.value}>
-                                    <option value="-"></option>
-                                    <option value="sortByPriceAsc">Sort By Price Asc</option>
-                                    <option value="sortByPriceDes">Sort By Price Des</option>
-                                    <option value="sortByNameAsc">Sort By Name Asc</option>
-                                    <option value="sortByNameDes">Sort By Name Des</option>
-                                </select>
-                            </div>
-                            <div class="products">
-                                {this.renderTableData()}
-                            </div>
+                    <div className="top">
+                        <h2>Bouquets</h2>
+                        <br />
+                        <div>
+                            <h3 className="inline" id="PriceRange">Price range</h3>
+                            <input className="inline" id="InputText" type="text" placeholder="0" onKeyPress={this.priceLowRangeChanged} onKeyUp={this.priceLowRangeChanged} />
+                            <h3 className="inline">  -  </h3>
+                            <input className="inline" id="InputText" type="text" placeholder="200" onKeyPress={this.priceHighRangeChanged} onKeyUp={this.priceHighRangeChanged} />
+                            <select className="inline" id="sort" onChange={this.handleChange} value={this.value}>
+                                <option value="-"></option>
+                                <option value="sortByPriceAsc">Sort By Price Asc</option>
+                                <option value="sortByPriceDes">Sort By Price Des</option>
+                                <option value="sortByNameAsc">Sort By Name Asc</option>
+                                <option value="sortByNameDes">Sort By Name Des</option>
+                            </select>
                         </div>
+                    </div>
+                    <div className="products">
+                        {this.renderTableData()}
                     </div>
                 </tbody>
             </div>
         )
     };
 }
-
 
 const mapStateToProps = (state, ownProps) => {
     return {

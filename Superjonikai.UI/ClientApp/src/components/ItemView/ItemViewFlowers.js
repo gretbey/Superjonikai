@@ -1,19 +1,46 @@
 ﻿import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { post } from '../../helpers/request'
+import { get, post, post2 } from '../../helpers/request'
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './ItemViewStyle.css';
 
 class ItemViewFlowers extends React.Component {
-
     constructor(props) {
         super(props);
+        const query = new URLSearchParams(window.location.search);
         this.state = {
-            flower: [
-                { id: 0, name: 'Tulips', price: 0.7, color: 'yellow' }]
-        };
+            flower: null,
+            price: null,
+            name: null,
+            color: null,
+            flowerId: query.get("id"),
+        }
+    }
+
+    componentDidMount() {
+        get(`flowers/${this.state.flowerId}`)
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    this.setState({
+                        flower: res.data,
+                        price: res.data.price,
+                        name: res.data.name,
+                        color: res.data.color,
+                        flowerId: res.data.id,
+                    })
+                }
+                else {
+                    console.warn(`Cannot get flower:`);
+                    console.warn(res.message);
+                }
+            })
+            .catch(error => {
+                console.error(`GET flowers/${this.state.flowerId} failed:`);
+                console.error(error);
+            });
     }
 
 
@@ -25,12 +52,12 @@ class ItemViewFlowers extends React.Component {
                     <h1>FLOWER DETAILS </h1>
                     <br />
                     <div class="row" >
-                        <div class="column left">                      
+                        <div class="column left">
                             <img class="img" src="https://www.floristikosnamai.lt/image/cache/catalog/geles/RAUDONOS-TULPES-1000x1000.jpg" />
                         </div>
                         <div class="column right">
-                            <h2>Name: {name} </h2>
-                            <h2> 1 pc. price {price}€ </h2>
+                            <h2>Name: {this.state.name} </h2>
+                            <h2> 1 pc. price {this.state.price}€ </h2>
                             <h2> Available </h2>
                         </div>
                     </div>
@@ -39,19 +66,19 @@ class ItemViewFlowers extends React.Component {
                     <div class='row'>
                         <div class="column">
                             <label for="pc."></label>
-                            <select name="size" id="size">
-                                <option value="three">3</option>
-                                <option value="six">6</option>
-                                <option value="nine">9</option>
+                            <select name="size" id="size" onChange={this.handleChange}>
+                                <option value="3">3</option>
+                                <option value="6">6</option>
+                                <option value="9">9</option>
                             </select>
                         </div>
-                        <div class="column">
+                        /*<div class="column">
                             <p>Pc.  0.00€ </p>
-                        </div>
+                        </div>*/
                     </div>
                     <br />
                     <div>
-                        <button type="addToCart" className="btnToCart">Add To Cart</button>
+                        <button type="addToCart" className="btnToCart" onClick={() => this.addToCart()}>Add To Cart</button>
                     </div>
                     <br />
                     <div>
@@ -62,6 +89,43 @@ class ItemViewFlowers extends React.Component {
                 </div>
             </div>
         )
+    }
+
+    handleChange = (event) => {
+        this.setState({ quantity: event.target.value });
+    };
+
+    addToCart() {
+        const {
+            flower,
+            price,
+            name,
+            color,
+            flowerId,
+        } = this.state;
+
+        post2('/add/{flower}', {
+            id: flowerId,
+            price: price,
+            name: name,
+            color: color,
+            flowerId: flowerId,
+            quantity: 3
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    alert("Succesfully added to cart!");
+                }
+                else {
+                    alert("You already added this item to cart")
+                }
+            })
+            .catch(error => {
+                alert(error)
+                console.error(`POST api/add/${flower} failed:`)
+                console.error(error)
+            });
     }
 }
 

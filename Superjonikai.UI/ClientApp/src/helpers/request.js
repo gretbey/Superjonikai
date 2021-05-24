@@ -26,6 +26,7 @@ export function post(url, params = {}) {
         },
         body: JSON.stringify(params)
     })
+    .then(res => handleErrors(res))
 }
 
 
@@ -38,6 +39,7 @@ export function get(url, params = {}) {
             'Authorization': 'Token ' + getCookie('AuthToken'),
         }
     })
+    .then(res => handleErrors(res))
 }
 
 export function put(url, params = {}) {
@@ -59,4 +61,16 @@ function handleErrors(response) {
         return Promise.reject()
     }
     return response;
+}
+
+export function post2(url, params = {}) {
+    return fetch(url, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Token ' + getCookie('AuthToken')
+        },
+        body: JSON.stringify(params)
+    })
+    .then(res => handleErrors(res))
 }

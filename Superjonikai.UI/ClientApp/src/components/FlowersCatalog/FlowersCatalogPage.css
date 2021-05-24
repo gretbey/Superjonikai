@@ -8,7 +8,7 @@
 .product-card {
     margin: 5px 10px 0px 5px;
     width: 180px;
-    height: 240px;
+    height: 260px;
     border: 2px solid;
     border-color: gainsboro;
 }
@@ -21,7 +21,7 @@
 label {
     margin: 5px 5px 0px 5px;
     font-size: 18px;
-    font-style: normal;;
+    font-style: normal;
 }
 
 .catalog-wrapper {
@@ -46,4 +46,10 @@ label {
 
 #InputText {
     width: 30px;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

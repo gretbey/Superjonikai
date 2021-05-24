@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Superjonikai.DB;
 
 namespace Superjonikai.DB.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20210521133931_add-quantity-and-size")]
+    partial class addquantityandsize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -377,18 +379,14 @@ namespace Superjonikai.DB.Migrations
                             Id = 1,
                             Email = "gg",
                             FirstName = "a",
-                            LastName = "b",
-                            PhoneNumber = "864444444",
-                            Token = "2"
+                            LastName = "b"
                         },
                         new
                         {
                             Id = 2,
                             Email = "titasgg@gmail.com",
                             FirstName = "Titas",
-                            LastName = "Grigaitis",
-                            PhoneNumber = "8633434434",
-                            Token = "1"
+                            LastName = "Grigaitis"
                         });
                 });
 
