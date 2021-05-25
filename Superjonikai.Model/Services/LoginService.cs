@@ -1,11 +1,18 @@
 ﻿using Superjonikai.Model.DTO;
 using Superjonikai.Model.IServices;
+using Superjonikai.Model.Repository;
 using System;
 
 namespace Superjonikai.Model.Services
 {
     public class LoginService : ILoginService
     {
+        private IUserRepository userRepository;
+
+        public LoginService(IUserRepository userRepo)
+        {
+            userRepository = userRepo;
+        }
         public ServerResult<User> Login(Login args)
         {
             try
@@ -13,17 +20,12 @@ namespace Superjonikai.Model.Services
                 if (args == null)
                     throw new Exception("Arguments are empty");
 
-                if (args.Email == "user" && args.Password == "user")
+                Entities.User user = userRepository.GetByEmail(args.Email);
+                if (user != null)
                     return new ServerResult<User>
                     {
-                        // Later it will change
-                        Success = true,
-                        Data = new User
-                        {
-                            Email = "user",
-                            FirstName = "user",
-                            LastName = "user"
-                        },
+                        Data = user.ToDTO(),
+                        Success = true
                     };
 
                 else

@@ -6,6 +6,17 @@ namespace Superjonikai.Model
 {
     public static class EntityToDtoHelper
     {
+        public static DTO.User ToDTO(this Entities.User user)
+        {
+            return new DTO.User()
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                Token = user.Token
+            };
+        }
         public static DTO.Bouquet ToDTO(this Entities.Bouquet bouquet)
         {
             return new DTO.Bouquet()

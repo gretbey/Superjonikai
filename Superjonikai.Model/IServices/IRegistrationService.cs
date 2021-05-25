@@ -1,7 +1,5 @@
-﻿using Superjonikai.Model.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Superjonikai.Model.DTO;
+
 
 namespace Superjonikai.Model.Services
 {

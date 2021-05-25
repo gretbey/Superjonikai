@@ -39,7 +39,6 @@ namespace Superjonikai.DB.SQLRepository
         {
             return context.Users.Find(id);
         }
-
         public List<User> GetAll()
         {
             return context.Users.ToList();
@@ -61,6 +60,11 @@ namespace Superjonikai.DB.SQLRepository
         public List<User> GetAllByEmail(string email)
         {
             throw new NotImplementedException();
+        }
+
+        public User GetByEmail(string Email)
+        {
+            return context.Users.FirstOrDefault(user => user.Email.Equals(Email));
         }
     }
 }
