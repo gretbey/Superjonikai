@@ -12,7 +12,7 @@ class FlowersCatalogPage extends React.Component {
         super(props);
         this.state = {
             flowers: [
-                { id: 0, name: 'Tulips', price: 0.7, color: 'yellow', image_path: 'https://image.freepik.com/free-photo/pink-tulip-flowers-isolated-white-background-clipping-path_290947-34.jpg' }],
+                { id: 0, name: 'Tulips', price: 0.7, color: 'pink', image_path: 'https://image.freepik.com/free-photo/pink-tulip-flowers-isolated-white-background-clipping-path_290947-34.jpg' }],
             value: 'sort',
             sortedFlowers: this.flowers,
             priceLowRange: 0,

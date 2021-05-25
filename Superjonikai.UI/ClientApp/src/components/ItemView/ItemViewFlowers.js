@@ -5,6 +5,7 @@ import { get, post, post2 } from '../../helpers/request'
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './ItemViewStyle.css';
+import Swal from 'sweetalert2';
 
 class ItemViewFlowers extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class ItemViewFlowers extends React.Component {
             price: null,
             name: null,
             color: null,
+            image_path: null,
             flowerId: query.get("id"),
         }
     }
@@ -29,6 +31,7 @@ class ItemViewFlowers extends React.Component {
                         price: res.data.price,
                         name: res.data.name,
                         color: res.data.color,
+                        image_path: res.data.image_path,
                         flowerId: res.data.id,
                     })
                 }
@@ -45,7 +48,7 @@ class ItemViewFlowers extends React.Component {
 
 
     render() {
-        const { id, name, price, color } = this.state;
+        const { id, name, price, color, image_path } = this.state;
         return (
             <div className='boundary'>
                 <div className='page-wrapper'>
@@ -53,7 +56,7 @@ class ItemViewFlowers extends React.Component {
                     <br />
                     <div class="row" >
                         <div class="column left">
-                            <img class="img" src="https://www.floristikosnamai.lt/image/cache/catalog/geles/RAUDONOS-TULPES-1000x1000.jpg" />
+                            <img class="img" src={image_path} />
                         </div>
                         <div class="column right">
                             <h2>Name: {this.state.name} </h2>
@@ -101,6 +104,7 @@ class ItemViewFlowers extends React.Component {
             price,
             name,
             color,
+            image_path,
             flowerId,
         } = this.state;
 
@@ -109,16 +113,28 @@ class ItemViewFlowers extends React.Component {
             price: price,
             name: name,
             color: color,
+            image_path: image_path,
             flowerId: flowerId,
             quantity: 3
         })
             .then(res => res.json())
             .then(res => {
                 if (res.success) {
-                    alert("Succesfully added to cart!");
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: "Succesfully added to cart!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }
                 else {
-                    alert("You already added this item to cart")
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'You already added this item to cart',
+                        icon: 'error',
+                        confirmButtonText: 'Continue'
+                    })
                 }
             })
             .catch(error => {
