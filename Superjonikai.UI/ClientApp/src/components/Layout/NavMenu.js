@@ -40,7 +40,7 @@ export class NavMenu extends Component {
                                 <NavLink tag={Link} className="text-dark" to="/registration">SIGN UP</NavLink>
                                 <NavLink tag={Link} className="text-dark" to="/login">SIGN IN</NavLink> 
                                 <NavLink tag={Link} className="text-dark" to="/accountInfo">Account Information</NavLink> 
-                                <button type="button" className="btnLogout" onClick={() => this.logout()}>Logout</button>
+                                {/* <button type="button" className="btnLogout" onClick={() => this.logout()}>Logout</button>  */}
                             </div>
                         </Container>
                     </Navbar>

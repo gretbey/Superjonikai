@@ -5,6 +5,8 @@ import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './LoginPage.css';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 class LoginPage extends React.Component{
     constructor(props){
@@ -48,13 +50,18 @@ class LoginPage extends React.Component{
             .then(res => {
                 if (res.success) {
                     setCookie(res.data.token, res.data.endTime);
-                    alert("Successfully connected");
-                    this.props.history.push('/catalog');
-                    this.props.login(res.data);                    
+                    //alert("Successfully connected");
+                    this.props.login(res.data);
+                    return window.location.href = "/catalog";
                 }
                 else
                 {
-                    alert("Bad credentials");
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Bad credentials.',
+                        icon: 'error',
+                        confirmButtonText: 'Continue'
+                    })
                 }
             })
             .catch(error => {

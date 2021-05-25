@@ -8,7 +8,7 @@ const initialState = {/*now hardcoded, later change to current user*/
     email: "titasgg@gmail.com",
     firstName: "Titas",
     lastName: "Grigaitis",
-    token: "1"
+    token: "adjhwu1321"
 }
 
 export default (state = initialState, action) => {
