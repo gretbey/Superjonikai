@@ -55,28 +55,32 @@ namespace Superjonikai.DB
                     Id = 1,
                     Name = "Tulips",
                     Price = 0.7,
-                    Color = "yellow"
+                    Color = "pink",
+                    Image_path = "https://image.freepik.com/free-photo/pink-tulip-flowers-isolated-white-background-clipping-path_290947-34.jpg"
                 },
                 new Flower
                 {
                     Id = 2,
                     Name = "Roses",
                     Price = 4,
-                    Color = "yellow"
+                    Color = "yellow",
+                    Image_path = "https://www.terrafolia.ca/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/l/o/long_stem_yellow_roses_sd_l.jpg"
                 },
                 new Flower
                 {
                     Id = 3,
                     Name = "Lilies",
                     Price = 3.5,
-                    Color = "yellow"
+                    Color = "white",
+                    Image_path = "https://www.funnyhowflowersdothat.co.uk/sites/flowers/files/styles/article_portrait/public/lelie_mooiwatbloemendoen_rouwboeket_4.jpg?itok=T851ZW44"
                 },
                 new Flower
                 {
                     Id = 4,
                     Name = "Sunflower",
                     Price = 7.5,
-                    Color = "yellow"
+                    Color = "yellow",
+                    Image_path = "https://www.haifa-group.com/sites/default/files/crop/Sunflower%20isolated.jpg"
                 }
             );
             modelBuilder.Entity<Login>().HasData(

@@ -12,7 +12,7 @@ class FlowersCatalogPage extends React.Component {
         super(props);
         this.state = {
             flowers: [
-                { id: 0, name: 'Tulips', price: 0.7, color: 'yellow' }],
+                { id: 0, name: 'Tulips', price: 0.7, color: 'yellow', image_path: 'https://image.freepik.com/free-photo/pink-tulip-flowers-isolated-white-background-clipping-path_290947-34.jpg' }],
             value: 'sort',
             sortedFlowers: this.flowers,
             priceLowRange: 0,
@@ -38,11 +38,11 @@ class FlowersCatalogPage extends React.Component {
 
     renderTableData() {
         return this.state.flowers.filter(item => item.price <= this.state.priceHighRange && item.price >= this.state.priceLowRange).map((flower, index) => {
-            const { id, name, price, color } = flower
+            const { id, name, price, color, image_path } = flower
             return (
                 <div class="product-card">
                     <Link to={{ pathname: `itemViewFlowers/${flower.name}`, state: { flower }, search: `?id=${id}` }}>
-                        <img class="img" src="https://www.floristikosnamai.lt/image/cache/catalog/geles/RAUDONOS-TULPES-1000x1000.jpg" />
+                        <img class="img" src={image_path} />
                         <br />
                     </Link>
                     <div class="product-info">

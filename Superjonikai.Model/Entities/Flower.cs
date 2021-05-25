@@ -18,7 +18,7 @@ namespace Superjonikai.Model.Entities
         [NotMapped]
         public virtual ICollection<FlowerOrder> Orders { set; get; }
 
-        //photo
+        public string Image_path { get; set; }
 
         public Flower()
         {
