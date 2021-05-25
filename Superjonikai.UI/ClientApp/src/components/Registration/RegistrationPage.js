@@ -37,7 +37,15 @@ class RegistrationPage extends React.Component{
             token
         } = this.state;
 
-        
+        if (!email || !firstName || !lastName) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'All fields are required!',
+                icon: 'error',
+                confirmButtonText: 'Continue'
+            })
+            return;
+        }
         if (password !== confirmPassword) {
             Swal.fire({
                 title: 'Error!',

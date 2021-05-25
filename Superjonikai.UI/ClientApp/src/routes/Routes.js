@@ -68,16 +68,7 @@ class Routes extends React.Component{
    
 
     render() {
-        const { currentUser } = this.props;
-        if (!currentUser || !currentUser.token)
-            return (
-                <BrowserRouter basename={'tmp'}>
-                    <Switch>
-                        <Route path='/catalog' exact component={FlowersCatalogPage} />
-                        <Route path='/registration' component={RegistrationPage} />
-                    </Switch>
-                </BrowserRouter>
-            )
+       
         return (
             <BrowserRouter basename={ 'tmp' }>
                 <Switch>
