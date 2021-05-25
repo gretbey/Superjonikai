@@ -5,14 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Protocols;
 using SimpleInjector;
 using Superjonikai.DB.SQLRepository;
 using Superjonikai.Model.Repository;
-using Superjonikai.Model.IServices;
-using Superjonikai.Model.Services;
 using System;
-using System.Configuration;
+using Superjonikai.Model.ActionFilters;
 
 namespace Superjonikai.UI
 {
@@ -59,6 +56,14 @@ namespace Superjonikai.UI
             services.AddDbContext<Superjonikai.DB.DBContext>(options => options
                 .UseLazyLoadingProxies()
                 .UseMySql(Configuration.GetConnectionString("DefaultConnection"), serverVersion));
+
+            if (Convert.ToBoolean(Configuration.GetSection("LoggingEnabled").Value))
+            {
+                services.AddMvc(opts =>
+                {
+                    opts.Filters.Add(new LogActionFilter());
+                });
+            }
 
             InitializeContainer();
         }
