@@ -61,5 +61,9 @@ namespace Superjonikai.DB.SQLRepository
             return context.Tokens.Where(token => token.UserId == userId).ToList();
         }
 
+        public List<Token> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

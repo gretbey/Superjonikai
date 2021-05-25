@@ -99,7 +99,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        login: (currentUser) => dispatch(currentUserActions.loginSuccess(currentUser))
+        login: (currentUser) => dispatch(currentUserActions.loginSuccess(currentUser)),
+        logout: () => dispatch(currentUserActions.logout())
+
     }
 }
 

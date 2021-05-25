@@ -8,7 +8,7 @@ const initialState = {/*now hardcoded, later change to current user*/
     email: "titasgg@gmail.com",
     firstName: "Titas",
     lastName: "Grigaitis",
-    token: 1
+    token: "1"
 }
 
 export default (state = initialState, action) => {
@@ -17,6 +17,9 @@ export default (state = initialState, action) => {
             state.email = action.login;
             state.firstName = action.firstName;
             state.lastName = action.lastName;
+            state.token = action.token;
+            state.expiredAt = action.expiredAt;
+
             return { ...state };
         }
         case LOGOUT: {

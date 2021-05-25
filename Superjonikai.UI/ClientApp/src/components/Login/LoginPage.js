@@ -1,5 +1,5 @@
 import React from 'react';
-import { post } from '../../helpers/request'
+import { post, setCookie } from '../../helpers/request'
 import { connect } from 'react-redux';
 import * as currentUserActions from '../../redux/actions/currentUserActions';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -47,6 +47,7 @@ class LoginPage extends React.Component{
             .then(res => res.json())
             .then(res => {
                 if (res.success) {
+                    setCookie(res.data.token, res.data.endTime);
                     alert("Successfully connected");
                     this.props.history.push('/catalog');
                     this.props.login(res.data);                    
