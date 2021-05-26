@@ -12,22 +12,24 @@ namespace Superjonikai.Model.Services
     }
     public class AuthTokenService : IAuthTokenService
     {
-        private readonly IUserRepository _userRepository;
-        public AuthTokenService(IUserRepository userRepository)
+        private readonly ITokenRepository tokenRepository;
+        public AuthTokenService(ITokenRepository tokenRepo)
         {
-            _userRepository = userRepository;
+            tokenRepository = tokenRepo;
         }
-
-        public int Validate(string token)
+        public int Validate(string tokenString)
         {
             try
             {
-                User userToken = _userRepository.FindByToken(token);
-                if (userToken == null)
+                Token token = tokenRepository.FindByToken(tokenString);
+                if (token == null) {
                     return -1;
+                }
 
-                return 1;
+                int hasEnded = DateTime.Compare(token.endTime, DateTime.Now);
+                return (hasEnded >= 1) ? token.UserId : -1;
             }
+            
             catch
             {
                 return -1;

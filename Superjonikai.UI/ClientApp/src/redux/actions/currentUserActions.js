@@ -11,6 +11,7 @@ export function loginSuccess(currentUser){
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
         token: currentUser.token,
+        expiredAt: currentUser.expiredAt
     }
 }
 export function loginFailure() {

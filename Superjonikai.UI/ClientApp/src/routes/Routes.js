@@ -63,14 +63,14 @@ class Routes extends React.Component{
                     }
                 })
                 .catch(error => {
-                    console.error('POST login?token=true failed:');
                     console.error(error);
                 })
         }
     }
    
 
-    render(){
+    render() {
+       
         return (
             <BrowserRouter basename={ 'tmp' }>
                 <Switch>
@@ -101,7 +101,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        login: (currentUser) => dispatch(currentUserActions.loginSuccess(currentUser))
+        login: (currentUser) => dispatch(currentUserActions.loginSuccess(currentUser)),
+        logout: () => dispatch(currentUserActions.logout())
+
     }
 }
 

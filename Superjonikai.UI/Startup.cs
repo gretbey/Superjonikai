@@ -9,6 +9,9 @@ using SimpleInjector;
 using Superjonikai.DB.SQLRepository;
 using Superjonikai.Model.Repository;
 using System;
+using System.Configuration;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Superjonikai.Model.ActionFilters;
 
 namespace Superjonikai.UI
@@ -31,7 +34,20 @@ namespace Superjonikai.UI
         {
             var connectionString = "Server=localhost;Database=FlowersDB;Password=root;User=root";
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
-            services.AddMvc();
+            services.AddScoped<IAuthorizationHandler, AuthorizationHandler>();
+            services.AddScoped<IAuthTokenService, AuthTokenService>();
+            services.AddScoped<ITokenRepository, TokenSqlRepository>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Token", policy =>
+                    policy.Requirements.Add(new AuthTokenRequirement()));
+            });
+
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(new AuthorizeFilter("Token"));
+            });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -129,8 +145,9 @@ namespace Superjonikai.UI
                 container.Register<IGiftCardRepository, GiftCardSqlRepository>(Lifestyle.Scoped);
                 container.Register<IBouquetOrderRepository, BouquetOrderSqlRepository>(Lifestyle.Scoped);
                 container.Register<IFlowerOrderRepository, FlowerOrderSqlRepository>(Lifestyle.Scoped);
+                container.Register<IUserRepository, UserSqlRepository>(Lifestyle.Scoped);
+                container.Register<ITokenRepository, TokenSqlRepository>(Lifestyle.Scoped);
             }
-            
         }
     }
 }

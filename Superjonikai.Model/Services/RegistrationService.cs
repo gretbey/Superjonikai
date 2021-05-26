@@ -1,62 +1,54 @@
-﻿using Superjonikai.Model.Entities;
+﻿using Superjonikai.Model.DTO;
+using Superjonikai.Model.IServices;
 using Superjonikai.Model.Repository;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Superjonikai.Model.Services
 {
     class RegistrationService : IRegistrationService
     {
-        private readonly IUserRepository _userRepository;
-        public ServerResult<string> GetEmailFromToken(string token)
+        private readonly IUserRepository userRepository;
+        public RegistrationService(IUserRepository userRepo)
         {
-            User user = _userRepository.FindByToken(token);
-
-            if (user != null)
-                return new ServerResult<string>
-                {
-                    Success = true,
-                    Data = user.Email
-                };
-
-            else
-                return new ServerResult<string>
-                {
-                    Success = false,
-                    Message = "Token doesn't exist in the database"
-                };
+            userRepository = userRepo;            
         }
 
+        public ServerResult<string> GetEmailFromToken(string token)
+        {
+            throw new NotImplementedException();
+        }
+
+     
         public ServerResult<User> Registration(Registration args)
         {
             try
             {
-                if (args.Email =="user") //check if emails is valid, after db implementation 
+                if (userRepository.GetByEmail(args.Email) != null)
                 {
                     return new ServerResult<User>
                     {
                         Success = false,
-                        Message = "Your email address is not valid.",
-                        Data = null
+                        Message = "this email already exists in the database"
                     };
                 }
-                else
+                var user = new Entities.User
                 {
-                    return new ServerResult<User>
-                    {
-                        Success = true,
-                        Data = new User
-                        {
-                            Email = "user",
-                            FirstName = "user",
-                            LastName = "user",
-                            PhoneNumber = "user"
-                        },
-                    };
-                }
+                    FirstName = args.FirstName,
+                    LastName = args.LastName,
+                    Email = args.Email,
+                    PhoneNumber = args.PhoneNumber,
+                    Token = args.Token,
+                };
+               
+                userRepository.Add(user);
+
+                return new ServerResult<User>
+                { 
+                    Data = user.ToDTO(),
+                    Success = true
+                };
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return new ServerResult<User>
                 {

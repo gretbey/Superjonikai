@@ -22,6 +22,8 @@ namespace Superjonikai.DB
         public DbSet<GiftCard> GiftCards { set; internal get; }
         public DbSet<FlowerOrder> FlowerOrders { set; internal get; }
         public DbSet<BouquetOrder> BouquetOrders { set; internal get; }
+        public DbSet<Token> Tokens { set; internal get; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

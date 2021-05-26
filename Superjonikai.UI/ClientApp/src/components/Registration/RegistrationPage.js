@@ -11,7 +11,7 @@ class RegistrationPage extends React.Component{
         this.state = {
             firstName: null,
             lastName: null,
-            phone: null,
+            phoneNumber: null,
             email: null,
             password: null,
             confirmPassword: null,
@@ -30,22 +30,22 @@ class RegistrationPage extends React.Component{
         const {
             firstName,
             lastName,
-            phone,
+            phoneNumber,
             email,
             password,
-            confirmPassword
+            confirmPassword,
+            token
         } = this.state;
 
-        if (!firstName || !lastName || !phone || !email || !password || !confirmPassword) {
+        if (!email || !firstName || !lastName) {
             Swal.fire({
                 title: 'Error!',
-                text: 'All fields are required.',
+                text: 'All fields are required!',
                 icon: 'error',
                 confirmButtonText: 'Continue'
             })
             return;
         }
-
         if (password !== confirmPassword) {
             Swal.fire({
                 title: 'Error!',
@@ -59,10 +59,10 @@ class RegistrationPage extends React.Component{
         post('registration/registration', {
             firstName: firstName,
             lastName: lastName,
-            phone: phone,
+            phoneNumber: phoneNumber,
             email: email,
             password: password,
-            confirmPassword: confirmPassword,
+            token: token,
 
         })
             .then(res => res.json())

@@ -23,6 +23,6 @@ namespace Superjonikai.Model.Entities
         public string PhoneNumber { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Token { get; set; }
-
+        public string endTime { get; set; }
     }
 }

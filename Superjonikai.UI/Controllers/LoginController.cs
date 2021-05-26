@@ -18,9 +18,20 @@ namespace Superjonikai.UI.Controllers
 
         [HttpPost]
         [Route("login")]
-        public ServerResult<User> Login([FromBody] Login args)
+    
+        public ServerResult<User> Login([FromBody] Login args, [FromQuery] bool token = false)
         {
+            if (token)
+            {
+                return _loginService.StartToken(args.Token);
+            }
             return _loginService.Login(args);
+        }
+
+        [HttpPost("logout")]
+        public void Logout()
+        {
+            _loginService.Logout(Request.Headers["Authorization"]);
         }
     }
 }
