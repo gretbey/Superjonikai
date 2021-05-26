@@ -17,6 +17,9 @@ class OrderDetailsPage extends React.Component {
             deliveryDate: null,
             clientName: null,
             orderId: query.get("id"),
+            items: [
+                { id: 123456, name: 'Toulip Bouquet', itemType: 'Bouquet', size: 'Medium', price: 20.00 },
+            ]
         }
     }
 
@@ -44,25 +47,67 @@ class OrderDetailsPage extends React.Component {
             });
     }
 
+
     render() {
         return (
-            <div>
-                <tbody>
-                    <div className='details'>
-                        <p><b>Order id: </b>{this.state.orderId}</p>
-                        <p><b>Client: </b>{this.state.clientName}</p>
-                        <p><b>Delivery date: </b>{this.state.deliveryDate}</p>
+            <div className="page-wrapper">
+                <section class="parrent">
+                    <section class="left">
+                        <div>
+                            <h2><b>Order id: </b>{this.state.orderId}</h2>
+                        </div>
+                        <h2> Items </h2>
+                        <hr/>
+                        <div className='cartItems'>
+                            <div class="orders_list_header">
+                                <ul>
+                                <li class='item'>
+                                    <table>
+                                        <tr>
+                                            <td><p> {this.state.items.name} </p></td>
+                                            <td><p> {this.state.items.size} </p></td>
+                                            <td><p> {this.state.items.price}€ </p></td>
+                                            <td><p> Status: {this.state.status}</p></td>
+                                        </tr>
+                                    </table>
+                                </li>
+                                </ul>
+                            </div>
+                            <div id="gift_card">
+                                <div class="card">
+                                    <div>
+                                        <p> <b>Gift Card</b></p>
+                                    </div>
+                                    <div id="gift_card_input">
+                                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </section>
+                    <section class="middle">
+                    </section>
+                    <section class="right">
+                        <h2> Details: </h2>
+                        <hr/>
+                        <div className='details'>
+                            <p><b>Client: </b>{this.state.clientName}</p>
+                            <p><b>Delivery date: </b>{this.state.deliveryDate}</p>
+                            <p><b>Delivery address: </b>{this.state.deliveryDate}</p>
+                            <p><b>Phone number: </b>{this.state.deliveryDate}</p>
+                            <p><b>Price: </b>{this.state.deliveryDate}</p>
+                        </div>
                         <br/>
-                        <p>Update status of order</p>
+                        <h3>Update status of order</h3>
                         <input
-                            className="input"
-                            type="text"
-                            defaultValue={this.state.status}
-                            onChange={e => this.setState({ status: e.target.value })}
-                            required />
+                        className="input"
+                        type="text"
+                        defaultValue={this.state.status}
+                        onChange={e => this.setState({ status: e.target.value })}
+                        required />
                         <button type="button" onClick={() => this.update()}>Update</button>
-                    </div>
-                </tbody>
+                    </section>
+                 </section>
             </div>
         )
     };
@@ -104,6 +149,28 @@ class OrderDetailsPage extends React.Component {
                 console.error(error)
             });
     }
+
+    //need to fix
+    renderListData() {
+        return (
+            <ul class="items_list">
+                {this.state.items.map(function (d, idx) {
+                    return (
+                        <li class="item" key={idx}>
+                            <table>
+                                <tr>
+                                    <td><p> {d.name} </p></td>
+                                    <td><p> {d.size} </p></td>
+                                    <td><p> {d.price}€ </p></td>
+                                    <td><p> Status: {this.state.status}</p></td>
+                                </tr>
+                            </table>
+                        </li>)
+                })}
+            </ul>
+        )
+    }
+
 }
 
 const mapStateToProps = (state, ownProps) => {
