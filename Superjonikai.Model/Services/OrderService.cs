@@ -92,7 +92,6 @@ namespace Superjonikai.Model.Services
 
         public ServerResult<List<Item>> GetItemsByClientName(string clientName)
         {
-            var kk = _configuration.GetValue<string>("PriceStategy");
             Type priceStrategy = Type.GetType("Superjonikai.Model.PriceStrategy." + _configuration.GetValue<string>("PriceStategy"));
             var priceStrategyInstance = (ITotalItemPriceCalculator)Activator.CreateInstance(priceStrategy);
             var orderId = _orderRepo.GetAll().Where(t => t.ClientName == clientName).Select(t => t.Id).Last();
