@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Superjonikai.Model.DTO
 {
-    class Registration
+    public class Registration
     {
         public string Email { get; set; }
         public string Password { get; set; }

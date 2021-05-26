@@ -13,11 +13,13 @@ using System.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Superjonikai.Model.ActionFilters;
+using Superjonikai.Model.Services;
 
 namespace Superjonikai.UI
 {
     public class Startup
     {
+        
         private Container container = new Container();
 
         public Startup(IConfiguration configuration)
@@ -34,19 +36,19 @@ namespace Superjonikai.UI
         {
             var connectionString = "Server=localhost;Database=FlowersDB;Password=root;User=root";
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
-            services.AddScoped<IAuthorizationHandler, AuthorizationHandler>();
-            services.AddScoped<IAuthTokenService, AuthTokenService>();
-            services.AddScoped<ITokenRepository, TokenSqlRepository>();
+            //services.AddScoped<IAuthorizationHandler, AuthorizationHandler>();
+            //services.AddScoped<IAuthTokenService, AuthTokenService>();
+            //services.AddScoped<ITokenRepository, TokenSqlRepository>();
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("Token", policy =>
-                    policy.Requirements.Add(new AuthTokenRequirement()));
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("Token", policy =>
+            //        policy.Requirements.Add(new AuthTokenRequirement()));
+            //});
 
             services.AddMvc(config =>
             {
-                config.Filters.Add(new AuthorizeFilter("Token"));
+                //config.Filters.Add(new AuthorizeFilter("Token"));
             });
 
             // In production, the React files will be served from this directory
