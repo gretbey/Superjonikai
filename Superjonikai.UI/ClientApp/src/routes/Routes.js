@@ -14,6 +14,7 @@ import ContactsPage from '../components/Contacts/ContactsPage';
 import AccountInfo from '../components/AccountInfo/AccountInfo';
 import ItemViewBouquets from '../components/ItemView/ItemViewBouquets';
 import ItemViewFlowers from '../components/ItemView/ItemViewFlowers';
+import AdminStockPage from '../components/Stock/AdminStockPage';
 
 import ShoppingCartPageRoutes from '../routes/ShoppingCartPageRoutes';
 import OrdersManagementPage from '../components/OrdersManagement/OrdersManagementPage';
@@ -41,7 +42,8 @@ class Routes extends React.Component{
                 { component: ContactsPage, path: "/contacts" },
                 { component: AccountInfo, path: "/accountInfo" },
                 { component: ItemViewBouquets, path: "/itemViewBouquets" },
-                { component: ItemViewFlowers, path: "/itemViewFlowers" }
+                { component: ItemViewFlowers, path: "/itemViewFlowers" },
+                { component: AdminStockPage, path: "/adminStockPage" }
             ]
         }
     }

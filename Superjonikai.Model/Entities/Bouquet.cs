@@ -15,6 +15,7 @@ namespace Superjonikai.Model.Entities
         public double Price { get; set; }
         [Column(TypeName = "varchar(255)")]
         public string Color { get; set; }
+        public string Image_path { get; set; }
         [NotMapped]
         public virtual ICollection<BouquetOrder> Orders { set; get; }
         //photo

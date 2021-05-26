@@ -25,6 +25,7 @@ namespace Superjonikai.Model
                 Name = bouquet.Name,
                 Price = bouquet.Price,
                 Color = bouquet.Color,
+                Image_path = bouquet.Image_path
             };
         }
 
@@ -35,7 +36,8 @@ namespace Superjonikai.Model
                 Id = flower.Id,
                 Name = flower.Name,
                 Price = flower.Price,
-                Color = flower.Color
+                Color = flower.Color,
+                Image_path = flower.Image_path
             };
         }
 

@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Superjonikai.Model.IServices;
-using Superjonikai.Model.Services;
 using Superjonikai.Model.DTO;
+using Superjonikai.Model.ActionFilters;
 
 namespace Superjonikai.UI.Controllers
 {
+    [LogActionFilter]
     [Route("api/[controller]")]
     public class LoginController : Controller
     {

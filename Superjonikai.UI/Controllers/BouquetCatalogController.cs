@@ -2,9 +2,11 @@
 using Superjonikai.Model.DTO;
 using Superjonikai.Model.IServices;
 using System.Collections.Generic;
+using Superjonikai.Model.ActionFilters;
 
 namespace Superjonikai.UI.Controllers
 {
+    [LogActionFilter]
     [ApiController]
     [Route("api/[controller]")]
     public class BouquetCatalogController : ControllerBase

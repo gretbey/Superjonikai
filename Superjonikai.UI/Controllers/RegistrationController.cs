@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Superjonikai.Model.ActionFilters;
 using Superjonikai.Model.Entities;
 using Superjonikai.Model.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Superjonikai.UI.Controllers
 {
+    [LogActionFilter]
     [Route("api/[controller]")]
     public class RegistrationController: Controller
     {

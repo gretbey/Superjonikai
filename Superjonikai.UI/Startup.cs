@@ -5,16 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Protocols;
 using SimpleInjector;
 using Superjonikai.DB.SQLRepository;
 using Superjonikai.Model.Repository;
-using Superjonikai.Model.IServices;
-using Superjonikai.Model.Services;
 using System;
 using System.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Superjonikai.Model.ActionFilters;
 
 namespace Superjonikai.UI
 {
@@ -75,6 +73,14 @@ namespace Superjonikai.UI
                 .UseLazyLoadingProxies()
                 .UseMySql(Configuration.GetConnectionString("DefaultConnection"), serverVersion));
 
+            if (Convert.ToBoolean(Configuration.GetSection("LoggingEnabled").Value))
+            {
+                services.AddMvc(opts =>
+                {
+                    opts.Filters.Add(new LogActionFilter());
+                });
+            }
+
             InitializeContainer();
         }
 
@@ -118,17 +124,30 @@ namespace Superjonikai.UI
 
         private void InitializeContainer()
         {
-            Model.ObjectContainer.InitializeContainer(container);
-            container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
-            container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
-            container.Register<IOrderRepository, OrderSqlRepository>(Lifestyle.Scoped);
-            container.Register<IGiftCardRepository, GiftCardSqlRepository>(Lifestyle.Scoped);
-            container.Register<IBouquetOrderRepository, BouquetOrderSqlRepository>(Lifestyle.Scoped);
-            container.Register<IFlowerOrderRepository, FlowerOrderSqlRepository>(Lifestyle.Scoped);
-            container.Register<IUserRepository, UserSqlRepository>(Lifestyle.Scoped);
-            container.Register<ITokenRepository, TokenSqlRepository>(Lifestyle.Scoped);
+            string repositoryPluginPath = Configuration.GetSection("Plugins").GetValue<string>("RepositoriesDllPath");
+            string servicePluginPath = Configuration.GetSection("Plugins").GetValue<string>("ServicesDllPath");
 
+            string[] pluginsDirectories = { servicePluginPath, repositoryPluginPath };
 
+            Model.ObjectContainer.InitializeContainer(container, pluginsDirectories);
+
+            InjectRepositories(repositoryPluginPath);
+
+        }
+
+        private void InjectRepositories(string path)
+        {
+            if(path == "")
+            {
+                container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
+                container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
+                container.Register<IOrderRepository, OrderSqlRepository>(Lifestyle.Scoped);
+                container.Register<IGiftCardRepository, GiftCardSqlRepository>(Lifestyle.Scoped);
+                container.Register<IBouquetOrderRepository, BouquetOrderSqlRepository>(Lifestyle.Scoped);
+                container.Register<IFlowerOrderRepository, FlowerOrderSqlRepository>(Lifestyle.Scoped);
+                container.Register<IUserRepository, UserSqlRepository>(Lifestyle.Scoped);
+                container.Register<ITokenRepository, TokenSqlRepository>(Lifestyle.Scoped);
+            }
         }
     }
 }

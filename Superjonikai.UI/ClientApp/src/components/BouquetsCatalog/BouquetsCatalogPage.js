@@ -12,7 +12,7 @@ class BouquetsCatalogPage extends React.Component {
         super(props);
         this.state = {
             bouquets: [
-                { id: 0, name: 'Simply gorgeous bouquet', price: 60.30 }],
+                { id: this.id, name: this.name, price: this.price, image_path: this.image_path }],
             value: 'sort',
             sortedBouquets: this.bouquets,
             priceLowRange: 0,
@@ -38,11 +38,11 @@ class BouquetsCatalogPage extends React.Component {
 
     renderTableData() {
         return this.state.bouquets.filter(item => item.price <= this.state.priceHighRange && item.price >= this.state.priceLowRange).map((bouquet, index) => {
-            const { id, name, price, color } = bouquet
+            const { id, name, price, color, image_path } = bouquet
             return (
                 <div class="product-card">
                     <Link to={{ pathname: `itemViewBouquets/${bouquet.name}`, state: { bouquet }, search: `?id=${id}` }}>
-                    <img class="img" src="https://www.realflowers.co.uk/pub/media/catalog/product/cache/70584c3f10463a2342ffe93acb98e4d0/s/i/simply_gorgeous_bouquet.jpg" />
+                        <img class="img" src={image_path} />
                         <br />
                     </Link>
                     <div class="product-info">
