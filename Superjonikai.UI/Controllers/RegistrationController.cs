@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Superjonikai.Model.ActionFilters;
-using Superjonikai.Model.Entities;
+using Superjonikai.Model.DTO;
+using Superjonikai.Model.IServices;
 using Superjonikai.Model.Services;
 
 namespace Superjonikai.UI.Controllers

@@ -1,7 +1,7 @@
 ﻿using Superjonikai.Model.DTO;
 
 
-namespace Superjonikai.Model.Services
+namespace Superjonikai.Model.IServices
 {
     public interface IRegistrationService
     {

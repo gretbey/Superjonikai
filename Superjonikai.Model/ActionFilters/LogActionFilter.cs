@@ -9,9 +9,9 @@ namespace Superjonikai.Model.ActionFilters
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class LogActionFilter : ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext filterContext) 
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
             => Log("OnActionExecuting", filterContext.RouteData);
-        
+
 
         private void Log(string methodName, RouteData routeData)
         {
@@ -20,8 +20,16 @@ namespace Superjonikai.Model.ActionFilters
             Debug.WriteLine(message, "Action Filter Log");
 
             var logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "superjonikai_log.txt");
-            using StreamWriter logFile = new StreamWriter(logPath, true);
-            logFile.WriteLine(message);
+            try
+            {
+                using StreamWriter logFile = new StreamWriter(logPath, true);
+                logFile.WriteLine(message);
+                logFile.Close();
+            }
+            catch
+            {
+                Console.WriteLine("Exception while trying to log to file");
+            }
         }
 
     }
