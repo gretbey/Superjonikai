@@ -30,7 +30,10 @@ p {
 }
 
 .left, .right {
-    width: 50%;
+    float: left;
+    width: 44%;
+    margin: 0em auto;
+    text-align: justify;
 }
 
 .boundary {

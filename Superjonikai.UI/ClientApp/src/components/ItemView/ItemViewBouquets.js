@@ -49,6 +49,7 @@ class ItemViewBouquets extends React.Component {
         return (
             <div className='page-wrapper'>
                 <h1>BOUQUETS DETAILS </h1>
+                <hr />
                 <br />
                 <div class="row" >
                     <div class="column">
@@ -66,6 +67,7 @@ class ItemViewBouquets extends React.Component {
                                 <option value="large">Large</option>
                             </select>
                         </div>
+                        <hr />
                         <br />
                         <div className='row'>
                             <button type="addToCart" className="btnToCart" onClick={() => this.addToCart()}>Add To Cart</button>
