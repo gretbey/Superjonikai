@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using Superjonikai.Model.DTO;
 using Superjonikai.Model.IServices;
 using Superjonikai.Model.Repository;
+using Superjonikai.Model.PriceStrategy;
 
 
 namespace Superjonikai.Model.Services
@@ -16,15 +18,17 @@ namespace Superjonikai.Model.Services
         private readonly IFlowerOrderRepository _flowerOrderRepo;
         private readonly IFlowerRepository _flowerRepo;
         private readonly IBouquetRepository _bouquetRepo;
+        private readonly IConfiguration _configuration;
 
 
-        public OrderService(IOrderRepository orderRepo, IBouquetOrderRepository bouquetOrderRepo, IFlowerOrderRepository flowerOrderRepo, IFlowerRepository flowerRepo, IBouquetRepository bouquetRepo)
+        public OrderService(IOrderRepository orderRepo, IBouquetOrderRepository bouquetOrderRepo, IFlowerOrderRepository flowerOrderRepo, IFlowerRepository flowerRepo, IBouquetRepository bouquetRepo, IConfiguration configuration)
         {
             _orderRepo = orderRepo;
             _bouquetOrderRepo = bouquetOrderRepo;
             _flowerOrderRepo = flowerOrderRepo;
             _flowerRepo = flowerRepo;
             _bouquetRepo = bouquetRepo;
+            _configuration = configuration;
         }
 
         public ServerResult<Order> Get(int id)
@@ -88,6 +92,9 @@ namespace Superjonikai.Model.Services
 
         public ServerResult<List<Item>> GetItemsByClientName(string clientName)
         {
+            var kk = _configuration.GetValue<string>("PriceStategy");
+            Type priceStrategy = Type.GetType("Superjonikai.Model.PriceStrategy." + _configuration.GetValue<string>("PriceStategy"));
+            var priceStrategyInstance = (ITotalItemPriceCalculator)Activator.CreateInstance(priceStrategy);
             var orderId = _orderRepo.GetAll().Where(t => t.ClientName == clientName).Select(t => t.Id).Last();
             List<Item> allItems = new List<Item>();
             Bouquet bouquet;
@@ -98,6 +105,7 @@ namespace Superjonikai.Model.Services
             {
                 bouquet = _bouquetRepo.Get(orderBouquet.BouquetId).ToDTO();
                 bouquet.Size = orderBouquet.Size;
+                bouquet.TotalPrice = priceStrategyInstance.CalculatePrice(bouquet);
                 if (bouquet.Size.ToLower() == "medium")
                 {
                     bouquet.TotalPrice = Math.Round(bouquet.Price * 1.5, 2);
@@ -116,7 +124,7 @@ namespace Superjonikai.Model.Services
             {
                 flower = _flowerRepo.Get(orderFlower.FlowerId).ToDTO();
                 flower.Quantity = orderFlower.Quantity;
-                flower.TotalPrice = Math.Round(flower.Quantity * flower.Price, 2);
+                flower.TotalPrice = priceStrategyInstance.CalculatePrice(flower);
                 allItems.Add(flower);
             }
             return new ServerResult<List<Item>>
