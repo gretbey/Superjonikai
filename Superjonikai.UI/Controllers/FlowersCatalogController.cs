@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Superjonikai.Model.ActionFilters;
 using Superjonikai.Model.DTO;
 using Superjonikai.Model.IServices;
 using System.Collections.Generic;
 
 namespace Superjonikai.UI.Controllers
 {
+    [LogActionFilter]
     [ApiController]
     [Route("api/[controller]")]
     public class FlowersCatalogController : ControllerBase
