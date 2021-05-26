@@ -103,13 +103,29 @@ namespace Superjonikai.UI
 
         private void InitializeContainer()
         {
-            Model.ObjectContainer.InitializeContainer(container);
-            container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
-            container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
-            container.Register<IOrderRepository, OrderSqlRepository>(Lifestyle.Scoped);
-            container.Register<IGiftCardRepository, GiftCardSqlRepository>(Lifestyle.Scoped);
-            container.Register<IBouquetOrderRepository, BouquetOrderSqlRepository>(Lifestyle.Scoped);
-            container.Register<IFlowerOrderRepository, FlowerOrderSqlRepository>(Lifestyle.Scoped);
+            string repositoryPluginPath = Configuration.GetSection("Plugins").GetValue<string>("RepositoriesDllPath");
+            string servicePluginPath = Configuration.GetSection("Plugins").GetValue<string>("ServicesDllPath");
+
+            string[] pluginsDirectories = { servicePluginPath, repositoryPluginPath };
+
+            Model.ObjectContainer.InitializeContainer(container, pluginsDirectories);
+
+            InjectRepositories(repositoryPluginPath);
+
+        }
+
+        private void InjectRepositories(string path)
+        {
+            if(path == "")
+            {
+                container.Register<IFlowerRepository, FlowerSqlRepository>(Lifestyle.Scoped);
+                container.Register<IBouquetRepository, BouquetSqlRepository>(Lifestyle.Scoped);
+                container.Register<IOrderRepository, OrderSqlRepository>(Lifestyle.Scoped);
+                container.Register<IGiftCardRepository, GiftCardSqlRepository>(Lifestyle.Scoped);
+                container.Register<IBouquetOrderRepository, BouquetOrderSqlRepository>(Lifestyle.Scoped);
+                container.Register<IFlowerOrderRepository, FlowerOrderSqlRepository>(Lifestyle.Scoped);
+            }
+            
         }
     }
 }
