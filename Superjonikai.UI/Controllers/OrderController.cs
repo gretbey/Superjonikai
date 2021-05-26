@@ -33,7 +33,17 @@ namespace Superjonikai.UI.Controllers
         [HttpPut("/UpdateOrder")]
         public ServerResult<Order> UpdateOrder([FromBody] Order order)
         {
-            return _orderService.UpdateOrder(order);
+            if (order.ClientName == "" || order.Status == null || order.DeliveryDate == null)
+            {
+                return new ServerResult<Order>() { 
+                    Success = false,
+                    Message = "Unable to update order",
+                };
+            }
+            else
+            {
+                return _orderService.UpdateOrder(order);
+            }
         }
 
         [HttpGet("/clientOrders/{clientName}")]
@@ -45,7 +55,17 @@ namespace Superjonikai.UI.Controllers
         [HttpPost("/add/{item}")]
         public ServerResult<Order> AddToCart([FromBody] Item item)
         {
-            return _orderService.AddToCart(item);
+            if (item.Name == "" || item.Price == 0)
+            {
+                return new ServerResult<Order>() { 
+                    Success = false,
+                    Message = "Unable to add to cart",
+                };
+            }
+            else
+            {
+                return _orderService.AddToCart(item);
+            } 
         }
 
     }
