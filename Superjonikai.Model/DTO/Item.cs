@@ -10,6 +10,7 @@ namespace Superjonikai.Model.DTO
         public string Name { get; set; }
         public double Price { get; set; }
         public string Color { get; set; }
+        public string Image_path { get; set; }
         public int Quantity { get; set;  }
         public string Size { get; set; }
         public double TotalPrice { get; set; }

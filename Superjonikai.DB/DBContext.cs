@@ -55,6 +55,8 @@ namespace Superjonikai.DB
                 u.Property(e => e.Name).HasColumnType("varchar")
                 .HasMaxLength(255).IsUnicode(false);
                 u.Property(e => e.Price);
+                u.Property(e => e.Image_path).HasColumnType("varchar")
+                .HasMaxLength(256).IsUnicode(false);
             });
             modelBuilder.Entity<Bouquet>(u =>
             {
@@ -64,6 +66,7 @@ namespace Superjonikai.DB
                 u.Property(e => e.Name).HasColumnType("varchar")
                 .HasMaxLength(255).IsUnicode(false);
                 u.Property(e => e.Price);
+
             });
             modelBuilder.Entity<GiftCard>(u =>
             {

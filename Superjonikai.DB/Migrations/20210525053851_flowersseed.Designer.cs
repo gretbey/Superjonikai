@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Superjonikai.DB;
 
 namespace Superjonikai.DB.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20210525053851_flowersseed")]
+    partial class flowersseed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,9 +30,6 @@ namespace Superjonikai.DB.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("Image_path")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Name")
                         .HasMaxLength(255)
                         .IsUnicode(false)
@@ -47,42 +46,37 @@ namespace Superjonikai.DB.Migrations
                         new
                         {
                             Id = 1,
-                            Color = "Paster pink, white",
-                            Image_path = "https://i.pinimg.com/564x/45/5f/82/455f828caa233226cee118db368c1150.jpg",
-                            Name = "Peony please",
-                            Price = 48.0
+                            Color = "yellow",
+                            Name = "Simply gorgeous bouquet",
+                            Price = 60.299999999999997
                         },
                         new
                         {
                             Id = 2,
-                            Color = "Purple, pink",
-                            Image_path = "https://i.pinimg.com/564x/39/1a/e2/391ae2faa2451615d0edbaa5a6a99eb6.jpg",
-                            Name = "Ramos de flores",
-                            Price = 43.0
+                            Color = "yellow",
+                            Name = "Summer flowers bouquet",
+                            Price = 40.299999999999997
                         },
                         new
                         {
                             Id = 3,
-                            Color = "White, brown",
-                            Image_path = "https://i.pinimg.com/564x/b1/f6/ab/b1f6abaa27472a78c4a460fa16a5ce1a.jpg",
-                            Name = "Dried cotton",
-                            Price = 38.0
+                            Color = "yellow",
+                            Name = "Mixed flowers",
+                            Price = 16.399999999999999
                         },
                         new
                         {
                             Id = 4,
-                            Color = "Pastel orange, yellow",
-                            Image_path = "https://i.pinimg.com/564x/47/a2/98/47a298931d888efe24b220770ba9f793.jpg",
-                            Name = "Early spring",
-                            Price = 40.0
+                            Color = "yellow",
+                            Name = "Roses box",
+                            Price = 12.0
                         },
                         new
                         {
                             Id = 5,
-                            Color = "Light brown, baby pink",
-                            Image_path = "https://i.pinimg.com/564x/96/6d/81/966d81ea338beeb0db1da246d6e80194.jpg",
-                            Name = "Earthy palette",
-                            Price = 42.0
+                            Color = "yellow",
+                            Name = "Bright flower bouquet",
+                            Price = 10.0
                         });
                 });
 
@@ -124,9 +118,7 @@ namespace Superjonikai.DB.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Image_path")
-                        .HasMaxLength(256)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .HasMaxLength(255)
@@ -144,24 +136,24 @@ namespace Superjonikai.DB.Migrations
                         new
                         {
                             Id = 1,
-                            Color = "pink, white",
-                            Image_path = "https://i.pinimg.com/564x/a7/b8/5f/a7b85f63378f0d3fa6c6e5b8c7aad8c5.jpg",
+                            Color = "pink",
+                            Image_path = "https://image.freepik.com/free-photo/pink-tulip-flowers-isolated-white-background-clipping-path_290947-34.jpg",
                             Name = "Tulips",
-                            Price = 1.8
+                            Price = 0.69999999999999996
                         },
                         new
                         {
                             Id = 2,
                             Color = "yellow",
-                            Image_path = "https://i.pinimg.com/564x/1d/c6/09/1dc609deb67c38a9befd92b2096b522d.jpg",
+                            Image_path = "https://www.terrafolia.ca/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/l/o/long_stem_yellow_roses_sd_l.jpg",
                             Name = "Roses",
-                            Price = 2.0
+                            Price = 4.0
                         },
                         new
                         {
                             Id = 3,
                             Color = "white",
-                            Image_path = "https://i.pinimg.com/564x/94/33/cd/9433cdf12d481789805feae9c411aecb.jpg",
+                            Image_path = "https://www.funnyhowflowersdothat.co.uk/sites/flowers/files/styles/article_portrait/public/lelie_mooiwatbloemendoen_rouwboeket_4.jpg?itok=T851ZW44",
                             Name = "Lilies",
                             Price = 3.5
                         },
@@ -171,55 +163,7 @@ namespace Superjonikai.DB.Migrations
                             Color = "yellow",
                             Image_path = "https://www.haifa-group.com/sites/default/files/crop/Sunflower%20isolated.jpg",
                             Name = "Sunflower",
-                            Price = 4.5
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Color = "pink",
-                            Image_path = "https://i.pinimg.com/564x/68/e4/a6/68e4a652bcc02790770af653291f0b60.jpg",
-                            Name = "Peony",
-                            Price = 3.5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Color = "multi",
-                            Image_path = "https://i.pinimg.com/564x/14/c2/63/14c263f41a10ec9ac59bb6a025a38169.jpg",
-                            Name = "Foxglove",
-                            Price = 7.7999999999999998
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Color = "multi",
-                            Image_path = "https://i.pinimg.com/564x/1f/85/3c/1f853cec192d3146e460279aebada93d.jpg",
-                            Name = "Russels",
-                            Price = 10.199999999999999
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Color = "purple",
-                            Image_path = "https://i.pinimg.com/564x/49/80/99/498099543e6263cab8f0122002e4acf2.jpg",
-                            Name = "Levander",
-                            Price = 5.5999999999999996
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Color = "multi",
-                            Image_path = "https://www.haifa-group.com/sites/default/files/crop/Sunflower%20isolated.jpg",
-                            Name = "Bunny tails",
-                            Price = 1.2
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Color = "white",
-                            Image_path = "https://i.pinimg.com/564x/08/53/f8/0853f8c46e7d7e0e868aab63346ddec9.jpg",
-                            Name = "Camomile",
-                            Price = 1.5
+                            Price = 7.5
                         });
                 });
 
